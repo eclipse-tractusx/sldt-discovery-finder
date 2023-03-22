@@ -1,0 +1,47 @@
+{{- $deployment_name := printf "cx-%s" .Release.Name }}
+{{- $sec_name := printf "%s-sec" $deployment_name }}
+{{- $svc_name := printf "%s-svc" $deployment_name }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $deployment_name }}
+spec:
+  replicas: {{ .Values.discoveryfinder.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $deployment_name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $deployment_name }}
+    spec:
+      containers:
+        - name: {{ $deployment_name }}
+          image: {{ .Values.discoveryfinder.image.registry }}/{{ .Values.discoveryfinder.image.repository }}:{{ .Values.discoveryfinder.image.version | default .Chart.AppVersion }}
+          imagePullPolicy: {{ .Values.discoveryfinder.image.imagePullPolicy }}
+          {{- if not .Values.discoveryfinder.authentication }}
+          args: [ "--spring.profiles.active=local" ]
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.discoveryfinder.containerPort }}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: {{ .Values.discoveryfinder.containerPort }}
+            initialDelaySeconds: 100
+            periodSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: {{ .Values.discoveryfinder.containerPort }}
+            initialDelaySeconds: 60
+            periodSeconds: 3
+            failureThreshold: 3
+          envFrom:
+            - secretRef:
+                name: {{ $sec_name }}
+          resources:
+{{ .Values.discoveryfinder.resources | toYaml | indent 12 }}
+      imagePullSecrets:
+{{ .Values.discoveryfinder.imagePullSecrets | toYaml | indent 8 }}

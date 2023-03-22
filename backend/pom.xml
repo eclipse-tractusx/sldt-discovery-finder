@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2021-2022 Contributors to the Eclipse Foundation
+
+    See the NOTICE file(s) distributed with this work for additional
+    information regarding copyright ownership.
+
+    This program and the accompanying materials are made available under the
+    terms of the Apache License, Version 2.0 which is available at
+    https://www.apache.org/licenses/LICENSE-2.0.
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+    License for the specific language governing permissions and limitations
+    under the License.
+
+    SPDX-License-Identifier: Apache-2.0
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.eclipse.tractusx</groupId>
+      <artifactId>discovery-finder</artifactId>
+      <version>DEV-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+   <groupId>org.eclipse.tractusx</groupId>
+   <artifactId>discovery-finder-backend</artifactId>
+   <name>Tractus-X Discovery Finder Backend</name>
+   <description>Module contains the Discovery Finder Backend</description>
+   <packaging>jar</packaging>
+
+   <organization>
+      <name>${organization}</name>
+      <url>${url}</url>
+   </organization>
+
+   <licenses>
+      <license>
+         <name>${licence_name}</name>
+         <url>${licence_url}</url>
+         <distribution>${licence_distribution}</distribution>
+         <comments>${licence_comments}</comments>
+      </license>
+   </licenses>
+
+   <dependencies>
+      <!-- Framework -->
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-jdbc</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-validation</artifactId>
+      </dependency>
+      <!-- persistence -->
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.postgresql</groupId>
+         <artifactId>postgresql</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.liquibase</groupId>
+         <artifactId>liquibase-core</artifactId>
+      </dependency>
+      <!-- Tests -->
+      <dependency>
+         <groupId>org.assertj</groupId>
+         <artifactId>assertj-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-simple</artifactId>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+         </plugin>
+         <plugin>
+            <groupId>io.github.git-commit-id</groupId>
+            <artifactId>git-commit-id-maven-plugin</artifactId>
+         </plugin>
+         <plugin>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>generate-discovery-finder-api-stubs</id>
+                  <goals>
+                     <goal>generate</goal>
+                  </goals>
+                  <configuration>
+                     <inputSpec>${project.basedir}/src/main/resources/static/discovery-finder-openapi.yaml</inputSpec>
+                     <generatorName>spring</generatorName>
+                     <generateSupportingFiles>true</generateSupportingFiles>
+                     <packageName>org.eclipse.tractusx.discoveryfinder</packageName>
+                     <modelPackage>org.eclipse.tractusx.discoveryfinder.model</modelPackage>
+                     <apiPackage>org.eclipse.tractusx.discoveryfinder.api</apiPackage>
+                     <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                     <configOptions>
+                        <useTags>true</useTags>
+                        <oas3>true</oas3>
+                        <delegatePattern>true</delegatePattern>
+                        <packageName>org.eclipse.tractusx</packageName>
+                        <useBeanValidation>true</useBeanValidation>
+                        <useSpringfox>false</useSpringfox>
+                        <useSpringBoot3>true</useSpringBoot3>
+                     </configOptions>
+                     <invokerPackage>org.eclipse.tractusx.semantics</invokerPackage>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring.boot.version}</version>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+         </plugin>
+      </plugins>
+
+      <resources>
+         <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+            <includes>
+               <include>**/*.yml</include>
+            </includes>
+         </resource>
+         <resource>
+            <directory>src/main/resources</directory>
+            <filtering>false</filtering>
+            <excludes>
+               <exclude>**/*.yml</exclude>
+            </excludes>
+         </resource>
+      </resources>
+   </build>
+</project>
