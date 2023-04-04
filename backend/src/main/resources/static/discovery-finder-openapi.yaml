@@ -145,6 +145,7 @@ components:
         endpoints:
           title: endpoints
           type: array
+          maxItems: 10000
           items:
             $ref: '#/components/schemas/DiscoveryEndpoint'
     ErrorResponse:
