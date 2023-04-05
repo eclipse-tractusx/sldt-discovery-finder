@@ -1,0 +1,19 @@
+apiVersion: v1
+entries:
+  discoveryfinder:
+  - apiVersion: v2
+    appVersion: 0.1.0-M1
+    created: "2023-04-05T14:17:48.71421153Z"
+    dependencies:
+    - condition: enablePostgres
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.2.3
+    description: Tractus-X Discovery Finder Helm Chart
+    digest: cbe48ad7be223f1fe05834f22a38c346a109b60be07b6609c6a5f2ca72dd6430
+    name: discoveryfinder
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/sldt-discovery-finder/releases/download/discoveryfinder-0.1.0/discoveryfinder-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-04-05T14:17:48.714227931Z"
