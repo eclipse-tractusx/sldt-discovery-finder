@@ -24,7 +24,7 @@
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
-      <version>3.0.1</version> <!-- need to be repeated in properties section for technical purposes -->
+      <version>3.0.5</version> <!-- need to be repeated in properties section for technical purposes -->
       <relativePath/> <!-- lookup parent from repository and not the filesystem -->
    </parent>
 
@@ -64,13 +64,14 @@
 
       <!-- version properties -->
       <!-- framework and base stuff -->
-      <spring.boot.version>3.0.1</spring.boot.version>
+      <spring.boot.version>3.0.5</spring.boot.version>
       <lombok.version>1.18.24</lombok.version>
       <openapi-starter-webmvc-ui.version>2.0.2</openapi-starter-webmvc-ui.version>
       <swagger-annotations.version>1.5.20</swagger-annotations.version>
       <swagger-core-version>2.0.0</swagger-core-version>
       <jackson-nullable.version>0.2.5</jackson-nullable.version>
       <jakarta.validation.version>3.0.2</jakarta.validation.version>
+      <snakeyaml.version>2.0</snakeyaml.version>
       <!-- logging -->
       <slf4j.version>2.0.6</slf4j.version>
       <logback.version>1.4.5</logback.version>
@@ -79,7 +80,7 @@
       <postgresql.version>42.5.4</postgresql.version>
       <mapstruct.version>1.5.3.Final</mapstruct.version>
       <mapstruct.lombok.version>0.2.0</mapstruct.lombok.version>
-      <liquibase.version>4.19.0</liquibase.version>
+      <liquibase.version>4.19.1</liquibase.version>
       <!-- test libs -->
       <assertj.version>3.24.2</assertj.version>
       <junit.version>5.9.2</junit.version>
@@ -172,6 +173,17 @@
          <groupId>org.liquibase</groupId>
          <artifactId>liquibase-core</artifactId>
          <version>${liquibase.version}</version>
+         <exclusions>
+            <exclusion>
+               <groupId>org.yaml</groupId>
+               <artifactId>snakeyaml</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.yaml</groupId>
+         <artifactId>snakeyaml</artifactId>
+         <version>${snakeyaml.version}</version>
       </dependency>
 
       <!-- persistence -->
