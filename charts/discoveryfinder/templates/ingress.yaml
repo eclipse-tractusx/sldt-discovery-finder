@@ -26,7 +26,7 @@ kind: Ingress
 metadata:
   name: {{ $ingr_name }}
   annotations:
-  {{ .Values.discoveryfinder.ingress.annotations | toYaml | indent 4 }}
+{{ .Values.discoveryfinder.ingress.annotations | toYaml | indent 4 }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
