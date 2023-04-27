@@ -3,9 +3,7 @@
 For Deployment needed:
 
 -   Webserver
-
 -   Kubernetes-Cluster
-
 -   Helm
 
 To deploy this system, you need to use the Helm Chart in a running

@@ -17,7 +17,7 @@ The api with its links can be found here: [Discovery Finder Api]( https://semant
 
 Define the endpoint to BPN discovery services and the EDC discovery
 service.
-
+ 
 <b> Request body: </b>
 
 ```json
@@ -37,7 +37,7 @@ service.
   "type": "oen",
   "description": "Service to discover BPN to a particular OEN",
   "endpointAddress": "http://...",
-  "documentation": \"http://\.../swagger/index.html",
+  "documentation": "http://.../swagger/index.html",
   "resourceId": "ec6f407b-4296-418c-9e4e-fb739fe72a67"
 
 }
@@ -55,7 +55,11 @@ service.
 
 ```json
 {
-"types": ["oen", "bpid"]
+"types": 
+ [
+   "oen", 
+   "bpid"
+ ]
 }
 ```
 
@@ -88,7 +92,7 @@ Delete the endpoint to BPN discovery services and the EDC discovery service.
 This service is allowed to **administrators only**.
 
 Path variable {resourceId} is required
-Response: http Status Code 204 -\> no responpse
+Response: http Status Code 204 -> no response
 
 An OpenApi.yaml for this service can be found under:
 "backend/src/main/resources/static/discovery-finder-openapi.yaml"

@@ -11,7 +11,7 @@ EDC to this BPN.
 
 ### Overall-View
 
-![](/media/image1.png)
+![Overall view](media/image1.png)
 
 ### Constraints
 
@@ -33,8 +33,7 @@ EDC to this BPN.
 
 -   Must be compliant and fulfill the Catena-X Guidelines.
 
--   The deployment is done in a Catena-X environment. So, the BPN
-    Discovery must be able to run in a Kubernetes environment with Helm
+-   The deployment is done in a Catena-X environment. So, the Discovery Finder must be able to run in a Kubernetes environment with Helm
     Charts.
 
 -   The Discovery Finder must be managed centralized.
