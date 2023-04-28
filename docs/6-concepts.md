@@ -26,7 +26,6 @@ service.
   "description": "Service to discover BPN to a particular OEN",
   "endpointAddress": "http://...",
   "documentation": "http://.../swagger/index.html"
-
 }
 ```
 
@@ -39,7 +38,6 @@ service.
   "endpointAddress": "http://...",
   "documentation": "http://.../swagger/index.html",
   "resourceId": "ec6f407b-4296-418c-9e4e-fb739fe72a67"
-
 }
 ```
 

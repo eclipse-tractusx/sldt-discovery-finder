@@ -2,7 +2,7 @@
 
 The Digital Twins are no longer administrated in a central registry
 anymore. The implementation of two services, "Discovery Finder" and "BPN
-Discovery", ensure that EDCs can be found in the decentralized
+Discovery", ensure that EDCs still can be found in the decentralized
 environment.
 
 ### High level requirement 
