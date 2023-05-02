@@ -7,8 +7,7 @@ environment.
 
 ### High level requirement 
 
-The Discovery Finder is responsible to help to find an endpoint to a BPD
-Discovery for a certain type and at last to find an EDC.
+The Discovery Finder is used to find an endpoint to a BPD Discovery for a certain type and at last to find an EDC.
 
 ### Quality goals
 
@@ -22,7 +21,7 @@ Discovery for a certain type and at last to find an EDC.
 
 -   Discovery Finder and BPN Discovery are "central" services
     (horizontal and vertical scalability included) and meant to help to
-    connect companies. So, one goal is to be integrated into the
+    connect companies. So it is integrated into the
     Catena-X network with all their services.
 
 ### Stakeholders

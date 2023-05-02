@@ -2,8 +2,9 @@
 
 ### Architecture
 
-A consumer sends a request to the Discovery Finder for a catalogue for a certain types e.g., "bpid", "oen". The Discovery Finder responses with a list of endpoints.  
-Now the consumer sends a request to the given BPN Discoveries. If the  BPN Discovery finds a matching entries he returns a List of BPNs. 
+A consumer sends a request to the Discovery Finder with a catalogue of a certain types e.g., "bpid", "oen". The Discovery Finder 
+responses with a list of endpoints of BPN Discoveries which provide BPNs for these kind of types.  
+Now the consumer sends a request to the given BPN Discoveries. If the BPN Discovery finds a matching entries he returns a List of BPNs. 
 With the given BPN the consumer can search for EDCs at the EDC Discovery according to this BPN.
 
 ### Overall-View
@@ -32,4 +33,4 @@ With the given BPN the consumer can search for EDCs at the EDC Discovery accordi
 
 -   The Discovery Finder must be managed centralized.
 
--   Keycloak is needed to manage the identity of and access of the user.
+-   Keycloak as an OAuth2 compliant authorization is needed to manage the identity of and access of the user.
