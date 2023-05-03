@@ -2,7 +2,7 @@
 
 The Digital Twins are no longer administrated in a central registry
 anymore. The implementation of two services, "Discovery Finder" and "BPN
-Discovery", ensure that EDCs still can be found in the decentralized
+Discovery", ensure that Eclipse Data Space Connectors (EDC)  still can be found in the decentralized
 environment.
 
 ### High level requirement 
@@ -13,8 +13,7 @@ The Discovery Finder is used to find an endpoint to a BPD Discovery for a certai
 
 -   Ensure that EDCs can be found.
 
--   Data sovereignty is given. The provider takes care / is responsible
-    for his data.
+-   Data sovereignty is given. The provider is responsible for his data.
 
 -   All users and services are secured and can only access when
     authenticated and authorized.

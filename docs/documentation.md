@@ -16,13 +16,14 @@ There are two actors who interact with the Discovery Finder
 | Actor         | Description                                                                                                  | Example                                               |
 |---------------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
 | Data Consumer | The data consumer uses the Discovery Finder to search for endpoints for BPN Discoveries for a specific type. |                                                       |
-| Data Provider | Data Provider adds or deletes his endpoint at the Discovery Finder                                           | A BPN Discovery registers its endpoint after startup. |
+| Data Provider | The data provider adds or deletes his endpoint at the Discovery Finder                                       | A BPN Discovery registers its endpoint after startup. |
+| Keycloak      | Keycloak is used for token validation                                                                        |                                                       |
 
 
 ## Disovery Finder Api
 
 The Discovery Finder provides a Swagger-Interface for all its endpoints:
-https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html#/Finder/GetDiscoveryEndpoints
+https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html
 
 #### Search request
 ![](media/search_DF.PNG)
@@ -66,3 +67,10 @@ valid Bearer Token. Authorization is provided by a role based access. These role
 | view_discovery_endpoint   | can search for BPN Discovery endpoints |
 | add_discovery_endpoint    | can add BPN Discovery endpoints        |
 | delete_discovery_endpoint | can delete BPN Discovery endpoints     |
+
+## Deployment
+
+To deploy this system, you need to use the Helm Chart in a running
+Kubernetes cluster. The Helm Chart is located under
+"charts/discoveryfinder". For further information
+checkout the readme.md. 
