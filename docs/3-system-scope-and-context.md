@@ -2,7 +2,7 @@
 
 ### Business Context
 
-![](media/image2.PNG)
+![](media/BusinessContext.PNG)
 
 | Neighbor      | Description                                          |
 |---------------|------------------------------------------------------|
@@ -13,7 +13,7 @@
 
 ### Technical Context
 
-![](media/image3.PNG)
+![](media/TecnicalContext.PNG)
 
 | Neighbor      | Description                                                              |
 |---------------|--------------------------------------------------------------------------|

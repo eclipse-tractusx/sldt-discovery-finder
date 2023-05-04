@@ -2,7 +2,7 @@
 
 ### Search request
 
-![](media/image4.PNG)
+![](media/SearchFlow.PNG)
 
 1.  The ConsumerApp sends a request of a certain type to
     DiscoveryEndpointFinderApiDelegate.
@@ -21,7 +21,7 @@
 
 ### Add request
 
-![](media/image5.PNG)
+![](media/AddFlow.PNG)
 
 1.  The Data Provider sends a request with a given endpoint to
     DiscoveryEndpointFinderApiDelegate.
@@ -35,7 +35,7 @@
 
 ### Delete request
 
-![](media/image6.PNG)
+![](media/DeleteFlow.PNG)
 
 1.  The Data Provider sends a request to delete an entry to
     DiscoveryEndpointFinderApiDelegate.

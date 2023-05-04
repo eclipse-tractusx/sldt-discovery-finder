@@ -2,8 +2,10 @@
 
 The Digital Twins are no longer administrated in a central registry
 anymore. The implementation of two services, "Discovery Finder" and "BPN
-Discovery", ensure that Eclipse Data Space Connectors (EDC)  still can be found in the decentralized
+Discovery", ensure that Eclipse Data Space Connectors (EDC) can be found in the decentralized
 environment.
+
+The Discovery Finder is responsible to find a matching BPN Discovery for a specific type.
 
 ### High level requirement 
 

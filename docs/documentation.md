@@ -7,8 +7,7 @@ The Digital Twins are no longer administrated in a central registry anymore. The
 Discovery", ensures that EDCs still can be found in the decentralized environment.
 The Discovery Finder hereby is responsible to send endpoints from BPN Discoveries for a specific type.
 
-
-![Overall view](media/image1.png)
+![Overall view](media/OverallConcept.png)
 
 ## Actors
 There are two actors who interact with the Discovery Finder
@@ -28,22 +27,22 @@ https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html
 #### Search request
 ![](media/search_DF.PNG)
 
-Reqiest body
+**Reqiest body**
 
 ![](media/Request_Search_DF.PNG)
 
-Response
+**Response**
 
 ![](media/Response_Search_DF.PNG)
 
 #### Add request
 ![add endpoint](media/setDF_Endpoint.PNG)
 
-Request body
+**Request body**
 
 ![request body](media/Request_Set_DF_Endpoint.PNG)
 
-Response
+**Response**
 
 ![response](media/Response_Set_DF_Endpoint.PNG)
 
@@ -54,7 +53,7 @@ ResourceID in path
 
 ![ResourceID ](media/ResourceID_DF.PNG)
 
-Response
+**Response**
 
 ![response](media/Response_Delete_DF.PNG)
 

@@ -9,7 +9,7 @@ With the given BPN the consumer can search for EDCs at the EDC Discovery accordi
 
 ### Overall-View
 
-![Overall view](media/image1.png)
+![Overall view](media/OverallConcept.png)
 
 ### Architecture
 A consumer can send a request to the Discovery Finder with a catalogue of different types. The Discovery Finder then will send a list of endpoint of

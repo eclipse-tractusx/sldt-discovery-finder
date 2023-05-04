@@ -13,12 +13,12 @@ endpoints.
 
 The api with its links can be found here: [Discovery Finder Api]( https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html)
 
-**POST [/api/administration/connectors/discovery](https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html#/Finder/PostDiscoveryEndpoint)**
+#### POST [/api/administration/connectors/discovery]
 
 Define the endpoint to BPN discovery services and the EDC discovery
 service.
- 
-<b> Request body: </b>
+
+**Request body:**
 
 ```json
 {
@@ -29,7 +29,7 @@ service.
 }
 ```
 
-<b> Response: </b>
+**Response:**
 
 ```json
 {
@@ -44,12 +44,12 @@ service.
 This service is allowed to **administrators only**.
 
 
-**POST [/api/administration/connectors/discovery/search](https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html#/Finder/GetDiscoveryEndpoints)**
+#### POST [/api/administration/connectors/discovery/search]
 
 Find the endpoints to BPN discovery services and the EDC discovery
 service.
 
-<b> Request body: </b>
+**Request body:**
 
 ```json
 {
@@ -61,7 +61,7 @@ service.
 }
 ```
 
-<b> Response: </b>
+**Response:**
 
 ```json
 {"endpoints":
@@ -84,7 +84,7 @@ service.
 }
 ```
 
-**DELETE [/api/administration/connectors/discovery/{resourceId}](https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html#/Finder/DeleteDiscoveryEndpointByResourceId)**
+#### DELETE [/api/administration/connectors/discovery/{resourceId}]
 
 Delete the endpoint to BPN discovery services and the EDC discovery service.
 This service is allowed to **administrators only**.
@@ -96,7 +96,7 @@ An OpenApi.yaml for this service can be found under:
 "backend/src/main/resources/static/discovery-finder-openapi.yaml"
 
 
-**Security / Safety / Use of JWT Token**
+### Security / Safety / Use of JWT Token
 
 The whole environment is secured with Keycloak. The Discovery Finder has
 a realm entry in Keycloak. Every user who wants to use Discovery Finder

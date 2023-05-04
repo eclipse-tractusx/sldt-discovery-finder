@@ -2,8 +2,6 @@
 
 ### Quality Requirements
 
-See Quality Gate (tbd)
-
 | Tool       | Description                                                                                                                                                                                                                                              |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Veracode   | "Veracode enables you to quickly and cost-effectively scan software for flaws and get actionable source code analysis results."[Link](https://www.veracode.com)                                                                                          |
