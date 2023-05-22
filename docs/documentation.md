@@ -73,9 +73,3 @@ To deploy this system, you need to use the Helm Chart in a running
 Kubernetes cluster. The Helm Chart is located under
 "charts/discoveryfinder". For further information
 checkout the [readme.md](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/README.md). 
-
-#### Legal Notice
-* SPDX-License-Identifier: CC-BY-4.0
-* Licence Path: https://creativecommons.org/licenses/by/4.0/legalcode
-* Copyright statements
-* Source URL: https://github.com/eclipse-tractusx/sldt-discovery-finder

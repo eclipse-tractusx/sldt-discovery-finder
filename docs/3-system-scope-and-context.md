@@ -20,9 +20,3 @@
 | Consumer App  | Requests for a BPN Discovery for a certain type like "oen"               |
 | Keycloak      | Generates token for users and provides id management of user and service |
 | BPN Discovery | Registers itself at startup                                              |
-
-#### Legal Notice
-* SPDX-License-Identifier: CC-BY-4.0
-* Licence Path: https://creativecommons.org/licenses/by/4.0/legalcode
-* Copyright statements
-* Source URL: https://github.com/eclipse-tractusx/sldt-discovery-finder

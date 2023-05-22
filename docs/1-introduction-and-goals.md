@@ -32,8 +32,3 @@ The Discovery Finder is used to find an endpoint to a BPD Discovery for a certai
 | Data Provider    |                                                    | wants that his EDC / Digital Twin can be found              |
 | Catena-X network | provides the environment and operates the services | to enable the companies to connect and exchange data        |
 
-#### Legal Notice
-* SPDX-License-Identifier: CC-BY-4.0
-* Licence Path: https://creativecommons.org/licenses/by/4.0/legalcode
-* Copyright statements
-* Source URL: https://github.com/eclipse-tractusx/sldt-discovery-finder
