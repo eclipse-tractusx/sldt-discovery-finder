@@ -24,6 +24,10 @@ spec:
           {{- end }}
           ports:
             - containerPort: {{ .Values.discoveryfinder.containerPort }}
+#         Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process
+#         Refer Set the security context for a Pod section here - https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+          securityContext:
+            allowPrivilegeEscalation: false
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
