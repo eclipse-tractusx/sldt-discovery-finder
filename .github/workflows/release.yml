@@ -61,7 +61,7 @@ jobs:
           git push origin release
           git push origin v${{ inputs.version }}
   call-image-release:
-    uses: ./.github/workflows/publish-image-bpn-discovery.yml
+    uses: ./.github/workflows/publish-image-discovery-finder.yml
     needs: build
     secrets: inherit
     with:
