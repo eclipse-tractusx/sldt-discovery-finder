@@ -24,7 +24,7 @@
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
-      <version>3.0.5</version> <!-- need to be repeated in properties section for technical purposes -->
+      <version>3.1.0</version> <!-- need to be repeated in properties section for technical purposes -->
       <relativePath/> <!-- lookup parent from repository and not the filesystem -->
    </parent>
 
@@ -64,7 +64,7 @@
 
       <!-- version properties -->
       <!-- framework and base stuff -->
-      <spring.boot.version>3.0.5</spring.boot.version>
+      <spring.boot.version>3.1.0</spring.boot.version>
       <lombok.version>1.18.24</lombok.version>
       <openapi-starter-webmvc-ui.version>2.0.2</openapi-starter-webmvc-ui.version>
       <swagger-annotations.version>1.5.20</swagger-annotations.version>
@@ -73,8 +73,8 @@
       <jakarta.validation.version>3.0.2</jakarta.validation.version>
       <snakeyaml.version>2.0</snakeyaml.version>
       <!-- logging -->
-      <slf4j.version>2.0.6</slf4j.version>
-      <logback.version>1.4.5</logback.version>
+      <slf4j.version>2.0.7</slf4j.version>
+      <logback.version>1.4.7</logback.version>
       <!-- persistence-->
       <h2.version>2.1.214</h2.version>
       <postgresql.version>42.5.4</postgresql.version>
@@ -83,7 +83,7 @@
       <liquibase.version>4.19.1</liquibase.version>
       <!-- test libs -->
       <assertj.version>3.24.2</assertj.version>
-      <junit.version>5.9.2</junit.version>
+      <junit.version>5.9.3</junit.version>
       <!-- build -->
       <maven.compiler.version>3.8.1</maven.compiler.version>
    </properties>

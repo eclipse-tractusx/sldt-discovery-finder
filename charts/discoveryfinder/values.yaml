@@ -21,8 +21,8 @@ enablePostgres: true
 
 discoveryfinder:
   image:
-    registry: ghcr.io/catenax-ng
-    repository: sldt-discovery-finder
+    registry: docker.io
+    repository: tractusx/sldt-discovery-finder
     version: ""
     imagePullPolicy: IfNotPresent
   replicaCount: 1
