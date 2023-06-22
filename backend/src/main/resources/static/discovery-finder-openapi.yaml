@@ -1,3 +1,5 @@
+---
+# kics-scan ignore-block
 ###############################################################
 # Copyright (c) 2021-2023 Robert Bosch Manufacturing Solutions GmbH
 # Copyright (c) 2021-2023 Contributors to the Eclipse Foundation
@@ -17,8 +19,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
----
-# kics-scan ignore-block
 openapi: 3.0.3
 info:
   title: Discovery Finder
