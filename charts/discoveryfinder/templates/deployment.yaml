@@ -17,10 +17,17 @@ spec:
     spec:
       securityContext:
         runAsUser: 100
+      volumes:
+        - name: properties-discoveryfinder-config
+          configMap:
+            name: properties-discoveryfinder
       containers:
         - name: {{ $deployment_name }}
           image: {{ .Values.discoveryfinder.image.registry }}/{{ .Values.discoveryfinder.image.repository }}:{{ .Values.discoveryfinder.image.version | default .Chart.AppVersion }}
           imagePullPolicy: {{ .Values.discoveryfinder.image.imagePullPolicy }}
+          volumeMounts:
+            - name: properties-discoveryfinder-config
+              mountPath: /service/config
           {{- if not .Values.discoveryfinder.authentication }}
           args: [ "--spring.profiles.active=local" ]
           {{- end }}
