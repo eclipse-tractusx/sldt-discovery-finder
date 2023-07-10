@@ -23,13 +23,22 @@ discoveryfinder:
   image:
     registry: docker.io
     repository: tractusx/sldt-discovery-finder
-    version: ""
+    version: "test"
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
   host: localhost
   ## If 'authentication' is set to false, no OAuth authentication is enforced
   authentication: true
+  ## If initial endpoints need to be created when the application starts, enable the initialEndpoints block and add initialEndpoints.
+  ## Type and endpointAddress is required is enabled.
+  properties:
+    discoveryfinder:
+  #    initialEndpoints:
+  #      - type:
+  #        endpointAddress:
+  #        description:
+  #        documentation:
   idp:
     issuerUri: https://idp-url
     publicClientId: idpClientID

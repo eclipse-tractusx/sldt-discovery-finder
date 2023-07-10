@@ -19,6 +19,8 @@
  ********************************************************************************/
 package org.eclipse.tractusx.discoveryfinder;
 
+import java.util.List;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
@@ -30,5 +32,24 @@ import lombok.Data;
 @ConfigurationProperties( prefix = "discoveryfinder" )
 public class DiscoveryFinderProperties {
    @NotEmpty( message = "public client id must not be empty" )
-   private final String publicClientId;
+   private String publicClientId;
+
+   private List<InitialEndpoint> initialEndpoints;
+
+   /**
+    * Properties for Initial Endpoints, which created on application start.
+    */
+   @Data
+   public static class InitialEndpoint {
+
+      @NotEmpty( message = "type must not be empty" )
+      private String type;
+
+      @NotEmpty( message = "endpointAddress must not be empty" )
+      private String endpointAddress;
+
+      private String description;
+      private String documentation;
+
+   }
 }

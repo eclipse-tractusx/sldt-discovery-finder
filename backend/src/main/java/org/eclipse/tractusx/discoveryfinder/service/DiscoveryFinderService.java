@@ -49,6 +49,10 @@ public class DiscoveryFinderService {
       return EndpointCollectionDto.builder().endpoints( endpoints ).build();
    }
 
+   public Endpoint findDiscoveryEndpointByTypeAndAddress( String type, String address ) {
+      return endpointRepository.findEndpointByTypeAndEndpointAddress( type, address );
+   }
+
    @Transactional
    public Endpoint save( Endpoint endpoint ) {
       return endpointRepository.save( endpoint );
