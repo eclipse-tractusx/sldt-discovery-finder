@@ -19,6 +19,7 @@
  ********************************************************************************/
 package org.eclipse.tractusx.discoveryfinder.mapper;
 
+import org.eclipse.tractusx.discoveryfinder.DiscoveryFinderProperties;
 import org.eclipse.tractusx.discoveryfinder.dto.EndpointCollectionDto;
 import org.eclipse.tractusx.discoveryfinder.model.DiscoveryEndpoint;
 import org.eclipse.tractusx.discoveryfinder.model.DiscoveryEndpointCollection;
@@ -32,6 +33,9 @@ public interface DiscoveryFinderMapper {
 
    @Mapping( target = "resourceId", expression = "java(UUID.randomUUID())" )
    Endpoint fromApiDto( DiscoveryEndpoint apiDto );
+
+   @Mapping( target = "resourceId", expression = "java(UUID.randomUUID())" )
+   Endpoint fromApiDto( DiscoveryFinderProperties.InitialEndpoint apiDto );
 
    DiscoveryEndpoint toApiDto( Endpoint endpoint );
 

@@ -28,6 +28,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -40,6 +41,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @SpringBootTest
 @AutoConfigureMockMvc
 @EnableConfigurationProperties( DiscoveryFinderProperties.class )
+@ActiveProfiles( "test" )
 public abstract class AbstractDiscoveryFinderApi {
 
    protected static final String DISCOVERY_FINDER_BASE_PATH = "/api/administration/connectors/discovery";

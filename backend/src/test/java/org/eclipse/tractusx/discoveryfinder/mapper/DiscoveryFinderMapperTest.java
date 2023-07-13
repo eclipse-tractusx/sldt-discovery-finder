@@ -57,7 +57,7 @@ public class DiscoveryFinderMapperTest {
    @Test
    public void fromApiDto_Null() {
       //given null -> when
-      Endpoint actual = discoveryFinderMapper.fromApiDto( null );
+      Endpoint actual = discoveryFinderMapper.fromApiDto( (DiscoveryEndpoint) null );
 
       //then
       Assertions.assertThat( actual ).isNull();

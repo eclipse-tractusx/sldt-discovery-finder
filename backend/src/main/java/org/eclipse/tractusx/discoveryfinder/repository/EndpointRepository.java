@@ -34,4 +34,6 @@ public interface EndpointRepository extends CrudRepository<Endpoint, UUID> {
    List<Endpoint> findAll();
 
    List<Endpoint> findEndpointByTypeIn( List<String> types );
+
+   Endpoint findEndpointByTypeAndEndpointAddress( String type, String endpointAddress );
 }
