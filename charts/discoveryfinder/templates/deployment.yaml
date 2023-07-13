@@ -15,15 +15,29 @@ spec:
       labels:
         app: {{ $deployment_name }}
     spec:
+      securityContext:
+        runAsUser: 100
+      volumes:
+        - name: properties-discoveryfinder-config
+          configMap:
+            name: properties-discoveryfinder
       containers:
         - name: {{ $deployment_name }}
           image: {{ .Values.discoveryfinder.image.registry }}/{{ .Values.discoveryfinder.image.repository }}:{{ .Values.discoveryfinder.image.version | default .Chart.AppVersion }}
           imagePullPolicy: {{ .Values.discoveryfinder.image.imagePullPolicy }}
+          volumeMounts:
+            - name: properties-discoveryfinder-config
+              mountPath: /service/config
           {{- if not .Values.discoveryfinder.authentication }}
           args: [ "--spring.profiles.active=local" ]
           {{- end }}
           ports:
             - containerPort: {{ .Values.discoveryfinder.containerPort }}
+#         Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process
+#         Refer Set the security context for a Pod section here - https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+          securityContext:
+            runAsUser: 100
+            allowPrivilegeEscalation: false
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
