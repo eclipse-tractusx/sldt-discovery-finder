@@ -23,7 +23,6 @@ discoveryfinder:
   image:
     registry: docker.io
     repository: tractusx/sldt-discovery-finder
-    version: "test"
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
