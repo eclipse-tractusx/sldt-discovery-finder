@@ -4,3 +4,4 @@ repositories:
   - name: "sldt-discovery-finder"
     usage: "This repository contains the source code for the SLDT Discovery Finder"
     url: "https://github.com/eclipse-tractusx/sldt-discovery-finder"
+
