@@ -39,3 +39,12 @@ BPN Discoveries which are providing BPNs for the requested types.
 -   The Discovery Finder must be managed centralized.
 
 -   Keycloak as an OAuth2 compliant authorization is needed to manage the identity and access of the user.
+
+### NOTICE
+
+This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+- SPDX-License-Identifier: Apache-2.0
+- SPDX-FileCopyrightText: 2023 Robert Bosch Manufacturing Solutions GmbH
+- SPDX-FileCopyrightText: 2023 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/sldt-discovery-finder.git
