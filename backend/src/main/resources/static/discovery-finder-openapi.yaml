@@ -148,8 +148,9 @@ components:
           type: array
           maxItems: 10000
           items:
-            type: string
-            $ref: '#/components/schemas/DiscoveryEndpoint'
+            oneOf:
+              - $ref: '#/components/schemas/DiscoveryEndpoint'
+              - type: "object"
     ErrorResponse:
       type: object
       required:
