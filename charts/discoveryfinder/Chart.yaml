@@ -19,7 +19,9 @@
 apiVersion: v2
 name: discoveryfinder
 description: Tractus-X Discovery Finder Helm Chart
-
+home: https://eclipse-tractusx.github.io/
+sources:
+  - https://github.com/eclipse-tractusx/sldt-discovery-finder
 type: application
 version: 0.1.5
 appVersion: 0.2.2-M1
