@@ -79,8 +79,8 @@ paths:
           content:
             application/json:
               schema:
-                type: string
                 $ref: '#/components/schemas/DiscoveryEndpointCollection'
+                type: object
               examples:
                 complete:
                   $ref: '#/components/examples/discovery-endpoint-search-result'
@@ -148,8 +148,8 @@ components:
           type: array
           maxItems: 10000
           items:
-            type: string
             $ref: '#/components/schemas/DiscoveryEndpoint'
+            type: object
     ErrorResponse:
       type: object
       required:
