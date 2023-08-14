@@ -80,7 +80,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscoveryEndpointCollection'
-                type: object
               examples:
                 complete:
                   $ref: '#/components/examples/discovery-endpoint-search-result'
@@ -106,6 +105,7 @@ components:
   schemas:
     DiscoveryEndpoint:
       title: DiscoveryEndpoint
+      type: object
       required:
         - type
         - description
