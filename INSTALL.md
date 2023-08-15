@@ -77,5 +77,5 @@ The Helm Chart can be configured using the following parameters. For a full over
 ### Prerequisites
 
 - Kubernetes 1.19+
-- Helm 3.10.2+
+- Helm 3.2.0+
 - PV provisioner support in the underlying infrastructure
