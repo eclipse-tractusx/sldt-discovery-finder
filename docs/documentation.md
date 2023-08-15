@@ -72,4 +72,13 @@ valid Bearer Token. Authorization is provided by a role based access. These role
 To deploy this system, you need to use the Helm Chart in a running
 Kubernetes cluster. The Helm Chart is located under
 "charts/discoveryfinder". For further information
-checkout the [readme.md](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/README.md). 
+checkout the [README.md](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/README.md) and the [INSTALL.md](INSTALL.md). 
+
+### NOTICE
+
+This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+- SPDX-License-Identifier: Apache-2.0
+- SPDX-FileCopyrightText: 2023 Robert Bosch Manufacturing Solutions GmbH
+- SPDX-FileCopyrightText: 2023 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/sldt-discovery-finder.git
