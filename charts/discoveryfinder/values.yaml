@@ -69,7 +69,7 @@ discoveryfinder:
       cpu: 750m
       memory: 1024Mi
     requests:
-      cpu: 750m
+      cpu: 250m
       memory: 1024Mi
 
 postgresql:
