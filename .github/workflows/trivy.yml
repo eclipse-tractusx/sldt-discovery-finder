@@ -79,9 +79,6 @@ jobs:
       - name: Build JAR
         run: mvn clean package
         
-      - name: Build Image
-        run: docker build -t discovery-finder -f ./backend/Dockerfile .
-        
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
