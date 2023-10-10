@@ -13,7 +13,7 @@ endpoints.
 
 The api with its links can be found here: [Discovery Finder Api]( https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html)
 
-#### POST [/api/administration/connectors/discovery]
+#### POST [/api/v1.0/administration/connectors/discovery]
 
 Define the endpoint to BPN discovery services and the EDC discovery
 service.
@@ -44,7 +44,7 @@ service.
 This service is allowed to **administrators only**.
 
 
-#### POST [/api/administration/connectors/discovery/search]
+#### POST [/api/v1.0/administration/connectors/discovery/search]
 
 Find the endpoints to BPN discovery services and the EDC discovery
 service.
@@ -84,7 +84,7 @@ service.
 }
 ```
 
-#### DELETE [/api/administration/connectors/discovery/{resourceId}]
+#### DELETE [/api/v1.0/administration/connectors/discovery/{resourceId}]
 
 Delete the endpoint to BPN discovery services and the EDC discovery service.
 This service is allowed to **administrators only**.
