@@ -73,3 +73,12 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --charts charts/discoveryfinder --config charts/chart-testing-config.yaml
         if: steps.list-changed.outputs.changed == 'true'
+
+      - name: Run helm upgrade
+        run: |
+            helm repo add bitnami https://charts.bitnami.com/bitnami
+            helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
+            helm install discoveryfinder tractusx-dev/discoveryfinder --version ${{ github.event.inputs.upgrade_from || 'x.x.x' }}
+            helm dependency update charts/discoveryfinder
+            helm upgrade discoveryfinder charts/discoveryfinder
+        if: steps.list-changed.outputs.changed == 'true'
