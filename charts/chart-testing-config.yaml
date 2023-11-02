@@ -16,12 +16,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: properties-discoveryfinder
-  labels:
-    app: properties-discoveryfinder
-data:
-  application.yml: |-
-{{ toYaml .Values.discoveryfinder.properties | indent 4 }}
+
+validate-maintainers: false
+chart-repos:
+  - bitnami=https://charts.bitnami.com/bitnami

@@ -44,8 +44,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @ActiveProfiles( "test" )
 public abstract class AbstractDiscoveryFinderApi {
 
-   protected static final String DISCOVERY_FINDER_BASE_PATH = "/api/administration/connectors/discovery";
-   protected static final String DISCOVERY_FINDER_SEARCH_API = "/api/administration/connectors/discovery/search";
+   protected static final String DISCOVERY_FINDER_BASE_PATH = "/api/v1.0/administration/connectors/discovery";
+   protected static final String DISCOVERY_FINDER_SEARCH_API = "/api/v1.0/administration/connectors/discovery/search";
 
    @Autowired
    protected MockMvc mockMvc;

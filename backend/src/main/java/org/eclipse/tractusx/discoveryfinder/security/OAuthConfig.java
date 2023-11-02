@@ -39,9 +39,9 @@ public class OAuthConfig {
             .authorizeHttpRequests( auth -> auth
                   .requestMatchers( HttpMethod.OPTIONS ).permitAll()
                   .requestMatchers( HttpMethod.GET, "/**" ).permitAll()
-                  .requestMatchers( HttpMethod.DELETE, "/api/administration/connectors/discovery/**" ).hasRole( JwtRoles.DELETE.getRole() )
-                  .requestMatchers( HttpMethod.POST, "/api/administration/connectors/discovery" ).hasRole( JwtRoles.ADD.getRole() )
-                  .requestMatchers( HttpMethod.POST, "/api/administration/connectors/discovery/search" ).hasRole( JwtRoles.VIEW.getRole() )
+                  .requestMatchers( HttpMethod.DELETE, "/api/v1.0/administration/connectors/discovery/**" ).hasRole( JwtRoles.DELETE.getRole() )
+                  .requestMatchers( HttpMethod.POST, "/api/v1.0/administration/connectors/discovery" ).hasRole( JwtRoles.ADD.getRole() )
+                  .requestMatchers( HttpMethod.POST, "/api/v1.0/administration/connectors/discovery/search" ).hasRole( JwtRoles.VIEW.getRole() )
             )
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS )
