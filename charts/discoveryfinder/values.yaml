@@ -40,7 +40,7 @@ discoveryfinder:
   #        documentation:
   idp:
     issuerUri: https://idp-url
-    publicClientId: idpClientID
+    publicClientId: idpClientID1
   service:
     port: 8080
     type: ClusterIP
