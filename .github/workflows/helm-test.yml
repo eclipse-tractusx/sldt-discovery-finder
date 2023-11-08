@@ -78,7 +78,7 @@ jobs:
         run: |
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-            helm install discoveryfinder tractusx-dev/discoveryfinder --version ${{ github.event.inputs.upgrade_from || '0.1.13' }}
+            helm install discoveryfinder tractusx-dev/discoveryfinder --version ${{ github.event.inputs.upgrade_from || '0.1.12' }}
             helm dependency update charts/discoveryfinder
             helm upgrade discoveryfinder charts/discoveryfinder
         if: steps.list-changed.outputs.changed == 'true'
