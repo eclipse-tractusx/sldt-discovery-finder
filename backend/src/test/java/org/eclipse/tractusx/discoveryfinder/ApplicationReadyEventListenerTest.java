@@ -1,17 +1,3 @@
-package org.eclipse.tractusx.discoveryfinder;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-
-import java.util.List;
-
-import org.eclipse.tractusx.discoveryfinder.model.Endpoint;
-import org.eclipse.tractusx.discoveryfinder.repository.EndpointRepository;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-
 /********************************************************************************
  * Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
  * Copyright (c) 2023 Contributors to the Eclipse Foundation
@@ -31,7 +17,19 @@ import org.springframework.test.context.ActiveProfiles;
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+package org.eclipse.tractusx.discoveryfinder;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
+import java.util.List;
+
+import org.eclipse.tractusx.discoveryfinder.model.Endpoint;
+import org.eclipse.tractusx.discoveryfinder.repository.EndpointRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @EnableConfigurationProperties( DiscoveryFinderProperties.class )
 @ActiveProfiles( "onstartuptest" )
