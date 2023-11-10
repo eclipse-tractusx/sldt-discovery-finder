@@ -31,7 +31,6 @@ on:
         type: string
       upgrade_from:
         description: 'chart version to upgrade from'
-        # chart version from 3.1 release as default
         default: '0.1.12'
         required: false
         type: string
