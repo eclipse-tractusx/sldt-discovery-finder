@@ -74,6 +74,37 @@ Kubernetes cluster. The Helm Chart is located under
 "charts/discoveryfinder". For further information
 checkout the [README.md](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/README.md) and the [INSTALL.md](INSTALL.md). 
 
+## Security Assessment
+
+### Data Flow Diagram
+
+```mermaid
+%%{init: {"flowchart": {"curve": "linear"} }}%%
+flowchart
+    DC(Data Consumer \n <i>e.g. IR</i>)
+    DP(Data Provider)
+    K(Keycloak)
+    subgraph Discovery Finder
+    DF(Discovery Finder Backend)
+    DFDB[(Discovery Finder postgres)]
+    end
+    subgraph BPN Discovery
+    BD(BPN Discovery Backend)
+    BDDB[(BPN Discovery postgres \n <i>N instances per data \n asset type and usage</i>)]
+    end
+    
+    DC <-->|Token request| K
+    DP <-->|Token request| K
+    DF <-->|Request endpoint for given type| DC
+    DF <--> DFDB
+    K -.->|Provide public key for token validation| DF
+    BD <--> BDDB
+    DC <-->|Request BPN for specific type| BD
+    DP -->|Register BPN type key| BD
+    BD -->|Success/error message for registration| DP
+    K -.->|Provide public key for token validation| BD
+```
+
 ### NOTICE
 
 This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
