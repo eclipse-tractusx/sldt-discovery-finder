@@ -29,6 +29,11 @@ on:
         default: 'kindest/node:v1.24.6'
         required: false
         type: string
+      upgrade_from:
+        description: 'chart version to upgrade from'
+        default: '0.1.12'
+        required: false
+        type: string
 
 jobs:
   lint-test:
@@ -72,4 +77,13 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install --charts charts/discoveryfinder --config charts/chart-testing-config.yaml
+        if: steps.list-changed.outputs.changed == 'true'
+
+      - name: Run helm upgrade
+        run: |
+            helm repo add bitnami https://charts.bitnami.com/bitnami
+            helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
+            helm install discoveryfinder tractusx-dev/discoveryfinder --version ${{ github.event.inputs.upgrade_from || '0.1.12' }}
+            helm dependency update charts/discoveryfinder
+            helm upgrade discoveryfinder charts/discoveryfinder
         if: steps.list-changed.outputs.changed == 'true'
