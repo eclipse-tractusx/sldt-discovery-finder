@@ -77,7 +77,7 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install --charts charts/discoveryfinder --config charts/chart-testing-config.yaml
-        if: steps.list-changed.outputs.changed == 'true'
+        if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
       - name: Run helm upgrade
         run: |
@@ -86,4 +86,4 @@ jobs:
             helm install discoveryfinder tractusx-dev/discoveryfinder --version ${{ github.event.inputs.upgrade_from || '0.1.12' }}
             helm dependency update charts/discoveryfinder
             helm upgrade discoveryfinder charts/discoveryfinder
-        if: steps.list-changed.outputs.changed == 'true'
+        if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
