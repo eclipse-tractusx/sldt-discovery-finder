@@ -20,7 +20,7 @@
 # Discovery Finder
 The Discovery Finder is a logical and architectural component of Tractus-X. The source code under this folder contains reference implementations of the SLDT Discovery Finder.
 The Discovery Finder is used to find endpoints of BPN Discoveries for a specific type, e.g. "oen". For further
-information have a look to the [documentation](docs/1-introduction-and-goals.md).
+information have a look to the [documentation](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/docs/1-introduction-and-goals.md).
 
 ## Build Packages
 Run `mvn clean install` to run unit tests, build and install the package.
@@ -34,7 +34,7 @@ Run `docker build -f backend/Dockerfile -t sldt-discovery-finder .`
 In case you want to publish your image into a remote container registry, apply the tag accordingly and `docker push` the image.
 
 ## Install Instructions
-For detailed install instructions please refer to our [INSTALL.md](INSTALL.md).
+For detailed install instructions please refer to our [INSTALL.md](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/INSTALL.md).
 
 ## Notice for Docker image
 
