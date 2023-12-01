@@ -23,7 +23,7 @@ home: https://eclipse-tractusx.github.io/
 sources:
   - https://github.com/eclipse-tractusx/sldt-discovery-finder
 type: application
-version: 0.1.12
+version: 0.1.13
 appVersion: 0.2.5
 
 dependencies:
