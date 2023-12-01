@@ -24,6 +24,8 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -51,5 +53,8 @@ public class DiscoveryFinderProperties {
       private String description;
       private String documentation;
 
+      @Min( value = 1, message = "value must be greater or equal to 1" )
+      @Max( value = 31536000, message = "value must be lesser or equal to 31536000")
+      private Integer timeToLive;
    }
 }

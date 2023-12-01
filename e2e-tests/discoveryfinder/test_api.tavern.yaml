@@ -73,6 +73,7 @@ stages:
         description: "Service to discover BPN to a particular serialnr"
         endpointAddress: "https://e2etests.com"
         documentation: "https://semantics.int.demo.catena-x.net/bpndiscovery/swagger-ui/index.html"
+        timeToLive: 31536000
     response:
       status_code: 201
       headers:

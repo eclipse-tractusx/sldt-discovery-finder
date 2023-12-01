@@ -38,4 +38,5 @@ public class Endpoint {
    String endpointAddress;
    String documentation;
    UUID resourceId;
+   Integer timeToLive;
 }

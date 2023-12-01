@@ -103,7 +103,7 @@ public class DiscoveryFinderApiSecurityTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenAuthenticationTokenWithoutAddRole_whenSave_thenReturnForbidden() throws Exception {
       // given
-      ObjectNode givenValidPayload = createDiscoveryEndpoint( "oen", "oen-url-sec-0", "description", "http://oen-swagger" );
+      ObjectNode givenValidPayload = createDiscoveryEndpoint( "oen", "oen-url-sec-0", "description", "http://oen-swagger", 31536000 );
 
       //when -> then
       mockMvc.perform(
@@ -159,7 +159,7 @@ public class DiscoveryFinderApiSecurityTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenAuthenticationTokenWithAddRole_whenSave_thenSaveSucceeds() throws Exception {
       // given
-      ObjectNode givenValidPayload = createDiscoveryEndpoint( "oen", "oen-url-sec-1", "description", "http://oen-swagger" );
+      ObjectNode givenValidPayload = createDiscoveryEndpoint( "oen", "oen-url-sec-1", "description", "http://oen-swagger", 31536000 );
 
       //when -> then
       mockMvc.perform(
@@ -177,7 +177,7 @@ public class DiscoveryFinderApiSecurityTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenAuthenticationTokenWithDeleteRole_whenDelete_thenDeleteSucceeds() throws Exception {
       // given
-      ObjectNode givenPayload = createDiscoveryEndpoint( "oen", "oen-url-sec-2", "description", "http://oen-swagger" );
+      ObjectNode givenPayload = createDiscoveryEndpoint( "oen", "oen-url-sec-2", "description", "http://oen-swagger", 31536000 );
       String givenResourceId = performDiscoveryEndpointCreateRequest( toJson( givenPayload ) );
 
       // when -> then
@@ -195,7 +195,7 @@ public class DiscoveryFinderApiSecurityTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenAuthenticationTokenWithViewRole_whenGetDiscoveryEndpoints_thenReturnResult() throws Exception {
       // given
-      ObjectNode givenOenNode1 = createDiscoveryEndpoint( "oen", "oen-url-sec-3", "description", "http://oen-swagger" );
+      ObjectNode givenOenNode1 = createDiscoveryEndpoint( "oen", "oen-url-sec-3", "description", "http://oen-swagger",31536000 );
       performDiscoveryEndpointCreateRequest( toJson( givenOenNode1 ) );
 
       String givenTypes = "{\n\"types\": [\n   \"oen\",\n    \"bpId\",\n    \"bpId\"\n ]\n}";

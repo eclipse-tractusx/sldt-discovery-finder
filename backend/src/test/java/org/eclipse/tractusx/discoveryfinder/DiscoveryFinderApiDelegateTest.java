@@ -40,7 +40,7 @@ public class DiscoveryFinderApiDelegateTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenValidDiscoveryEndpoint_whenSave_thenSaveSucceeds() throws Exception {
       // given
-      ObjectNode givenValidPayload = createDiscoveryEndpoint( "oen", "oen-url-1", "description", "http://oen-swagger" );
+      ObjectNode givenValidPayload = createDiscoveryEndpoint( "oen", "oen-url-1", "description", "http://oen-swagger",31536000 );
 
       //when -> then
       mockMvc.perform(
@@ -59,7 +59,7 @@ public class DiscoveryFinderApiDelegateTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenDuplicateDiscoveryEndpoint_whenSave_thenThrowDuplicateKeyException() throws Exception {
       // given
-      ObjectNode givenPayload = createDiscoveryEndpoint( "oen", "oen-url-2", "description", "http://oen-swagger" );
+      ObjectNode givenPayload = createDiscoveryEndpoint( "oen", "oen-url-2", "description", "http://oen-swagger", 31536000 );
       performDiscoveryEndpointCreateRequest( toJson( givenPayload ) );
       ObjectNode duplicatedPayload = givenPayload;
 
@@ -80,7 +80,7 @@ public class DiscoveryFinderApiDelegateTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenValidResourceId_whenDelete_thenDeleteSucceeds() throws Exception {
       // given
-      ObjectNode givenPayload = createDiscoveryEndpoint( "oen", "oen-url-3", "description", "http://oen-swagger" );
+      ObjectNode givenPayload = createDiscoveryEndpoint( "oen", "oen-url-3", "description", "http://oen-swagger", 31536000 );
       String givenResourceId = performDiscoveryEndpointCreateRequest( toJson( givenPayload ) );
 
       // when -> then
@@ -136,8 +136,8 @@ public class DiscoveryFinderApiDelegateTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenSearchRequest_whenGetDiscoveryEndpoints_thenReturnResult() throws Exception {
       // given
-      ObjectNode givenOenNode1 = createDiscoveryEndpoint( "oen", "oen-url-4", "description", "http://oen-swagger" );
-      ObjectNode givenOenNode2 = createDiscoveryEndpoint( "bpId", "bpId-url-1", "description", "http://oen-swagger" );
+      ObjectNode givenOenNode1 = createDiscoveryEndpoint( "oen", "oen-url-4", "description", "http://oen-swagger", 31536000 );
+      ObjectNode givenOenNode2 = createDiscoveryEndpoint( "bpId", "bpId-url-1", "description", "http://oen-swagger", 31536000 );
       performDiscoveryEndpointCreateRequest( toJson( givenOenNode1 ) );
       performDiscoveryEndpointCreateRequest( toJson( givenOenNode2 ) );
 
@@ -164,9 +164,9 @@ public class DiscoveryFinderApiDelegateTest extends AbstractDiscoveryFinderApi {
    @Test
    public void givenEmptySearchRequest_whenGetDiscoveryEndpoints_thenReturnAllDiscoveryEndpoints() throws Exception {
       // given
-      ObjectNode givenOenNode1 = createDiscoveryEndpoint( "bpId", "bpId-url-2", "description", "http://oen-swagger" );
-      ObjectNode givenOenNode2 = createDiscoveryEndpoint( "oen", "oen-url-5", "description", "http://oen-swagger" );
-      ObjectNode givenOenNode3 = createDiscoveryEndpoint( "serialId", "serialId-url-1", "description", "http://oen-swagger" );
+      ObjectNode givenOenNode1 = createDiscoveryEndpoint( "bpId", "bpId-url-2", "description", "http://oen-swagger", 31536000 );
+      ObjectNode givenOenNode2 = createDiscoveryEndpoint( "oen", "oen-url-5", "description", "http://oen-swagger", 31536000 );
+      ObjectNode givenOenNode3 = createDiscoveryEndpoint( "serialId", "serialId-url-1", "description", "http://oen-swagger", 31536000 );
       performDiscoveryEndpointCreateRequest( toJson( givenOenNode1 ) );
       performDiscoveryEndpointCreateRequest( toJson( givenOenNode2 ) );
       performDiscoveryEndpointCreateRequest( toJson( givenOenNode3 ) );
@@ -188,5 +188,41 @@ public class DiscoveryFinderApiDelegateTest extends AbstractDiscoveryFinderApi {
             .andExpect( jsonPath( "$.endpoints[0].type", equalTo( "bpId" ) ) )
             .andExpect( jsonPath( "$.endpoints[1].type", equalTo( "oen" ) ) )
             .andExpect( jsonPath( "$.endpoints[2].type", equalTo( "serialId" ) ) );
+   }
+
+   @Test
+   public void givenToBigTimeToLive_whenSave_thenThrowMethodArgumentNotValidException() throws Exception {
+      //given
+      ObjectNode givenInvalidTtl = createDiscoveryEndpoint( "bpId", "bpId-url-2", "description", "http://oen-swagger", 31536001 );
+      //when -> then
+      mockMvc.perform(
+                  MockMvcRequestBuilders
+                        .post( DISCOVERY_FINDER_BASE_PATH )
+                        .accept( MediaType.APPLICATION_JSON )
+                        .contentType( MediaType.APPLICATION_JSON )
+                        .content( toJson( givenInvalidTtl ) )
+                        .with( jwtTokenFactory.allRoles() )
+            )
+            .andDo( MockMvcResultHandlers.print() )
+            .andExpect( status().isBadRequest() )
+            .andExpect( jsonPath( "$.[0].message", equalTo( "must be less than or equal to 31536000" ) ) );
+   }
+
+   @Test
+   public void givenToSmallTimeToLive_whenSave_thenThrowMethodArgumentNotValidException() throws Exception {
+      //given
+      ObjectNode givenInvalidTtl = createDiscoveryEndpoint( "bpId", "bpId-url-2", "description", "http://oen-swagger", 0 );
+      //when -> then
+      mockMvc.perform(
+                  MockMvcRequestBuilders
+                        .post( DISCOVERY_FINDER_BASE_PATH )
+                        .accept( MediaType.APPLICATION_JSON )
+                        .contentType( MediaType.APPLICATION_JSON )
+                        .content( toJson( givenInvalidTtl ) )
+                        .with( jwtTokenFactory.allRoles() )
+            )
+            .andDo( MockMvcResultHandlers.print() )
+            .andExpect( status().isBadRequest() )
+            .andExpect( jsonPath( "$.[0].message", equalTo( "must be greater than or equal to 1" ) ) );
    }
 }
