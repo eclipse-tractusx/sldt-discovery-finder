@@ -24,7 +24,7 @@
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
-      <version>3.1.2</version> <!-- need to be repeated in properties section for technical purposes -->
+      <version>3.1.6</version> <!-- need to be repeated in properties section for technical purposes -->
       <relativePath/> <!-- lookup parent from repository and not the filesystem -->
    </parent>
 
@@ -64,7 +64,7 @@
 
       <!-- version properties -->
       <!-- framework and base stuff -->
-      <spring.boot.version>3.1.2</spring.boot.version>
+      <spring.boot.version>3.1.6</spring.boot.version>
       <lombok.version>1.18.24</lombok.version>
       <openapi-starter-webmvc-ui.version>2.0.2</openapi-starter-webmvc-ui.version>
       <swagger-annotations.version>1.5.20</swagger-annotations.version>
@@ -74,7 +74,7 @@
       <snakeyaml.version>2.0</snakeyaml.version>
       <!-- logging -->
       <slf4j.version>2.0.7</slf4j.version>
-      <logback.version>1.4.7</logback.version>
+      <logback.version>1.4.14</logback.version>
       <!-- persistence-->
       <h2.version>2.1.214</h2.version>
       <postgresql.version>42.5.4</postgresql.version>
