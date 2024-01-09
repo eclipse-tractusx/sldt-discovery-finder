@@ -68,3 +68,12 @@ databaseChangeLog:
             constraintName: endpoint_ak_AK_02
             tableName: endpoint
             validate: true
+  - changeSet:
+      id: 29112023-01
+      author: slindner
+      changes:
+        - addColumn:
+            tableName: endpoint
+            columns:
+              name: time_to_live
+              type: integer

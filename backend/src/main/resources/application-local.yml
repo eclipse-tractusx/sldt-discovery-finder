@@ -31,11 +31,12 @@ spring:
 
 discoveryfinder:
   publicClientId: discovery-finder-client
-  # initialEndpoints:
-  #  - type: "EDC"
-  #    endpointAddress: "https://"
-  #    description: ""
-  #    documentation: ""
+#  initialEndpoints:
+#    - type: "EDC"
+#      endpointAddress: "https://"
+#      description: "ss"
+#      documentation: "htt"
+#      timeToLive: 31536000
 
 # Properties develop against a postgres instance
 # You can start a postgres instance using the docker-compose file located in the backend/postgres/ directory

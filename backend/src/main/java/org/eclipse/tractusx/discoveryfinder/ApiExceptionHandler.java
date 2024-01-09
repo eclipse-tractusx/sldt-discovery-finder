@@ -19,22 +19,48 @@
  ********************************************************************************/
 package org.eclipse.tractusx.discoveryfinder;
 
+import java.util.List;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.eclipse.tractusx.discoveryfinder.model.Error;
 import org.eclipse.tractusx.discoveryfinder.model.ErrorResponse;
 import org.eclipse.tractusx.discoveryfinder.service.EntityNotFoundException;
 import org.eclipse.tractusx.discoveryfinder.service.ValidationException;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
- 
+
+   @Override
+   protected ResponseEntity<Object> handleMethodArgumentNotValid( final MethodArgumentNotValidException ex,
+         final HttpHeaders headers,
+         final HttpStatusCode status, final WebRequest request ) {
+
+      List<Error> errors = ex.getBindingResult()
+            .getFieldErrors()
+            .stream()
+            .map( fieldError -> new Error()
+                  .putDetailsItem( "parameter", fieldError.getField() )
+                  .message( Optional.ofNullable( fieldError.getDefaultMessage() ).orElseGet( () -> "null" ) )
+            ).collect( Collectors.toList());
+      return new ResponseEntity<>(
+            errors, HttpStatus.BAD_REQUEST );
+   }
+
+
    @ExceptionHandler( { ValidationException.class } )
    public ResponseEntity<ErrorResponse> handleValidationException( final HttpServletRequest request,
          final ValidationException exception ) {
@@ -61,4 +87,5 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                   .message( "Entity for the given resourceId already exists." )
                   .path( request.getRequestURI() ) ), HttpStatus.BAD_REQUEST );
    }
+
 }

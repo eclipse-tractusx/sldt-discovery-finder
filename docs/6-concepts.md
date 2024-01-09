@@ -25,7 +25,8 @@ service.
   "type": "oen",
   "description": "Service to discover BPN to a particular OEN",
   "endpointAddress": "http://...",
-  "documentation": "http://.../swagger/index.html"
+  "documentation": "http://.../swagger/index.html",
+  "timeToLive": 31536000
 }
 ```
 
@@ -37,7 +38,8 @@ service.
   "description": "Service to discover BPN to a particular OEN",
   "endpointAddress": "http://...",
   "documentation": "http://.../swagger/index.html",
-  "resourceId": "ec6f407b-4296-418c-9e4e-fb739fe72a67"
+  "resourceId": "ec6f407b-4296-418c-9e4e-fb739fe72a67",
+  "timeToLive": 31536000
 }
 ```
 
@@ -71,14 +73,16 @@ service.
     "description": "Service to discover BPN to a particular OEN",
     "endpointAddress": "http://...",
     "documentation": "http://.../swagger/index.html",
-    "resourceId": "ec6f407b-4296-418c-9e4e-fb739fe72a67"
+    "resourceId": "ec6f407b-4296-418c-9e4e-fb739fe72a67",
+    "timeToLive": 31536000
   },
   {
     "type": "bpid",
     "description": "Service to discover BPN to a particular Battery Pass ID",
     "endpointAddress": "http://...",
     "documentation": "http://.../swagger/index.html",
-    "resourceId": "08702529-3714-4c4f-b022-346b9b4fbbe2"
+    "resourceId": "08702529-3714-4c4f-b022-346b9b4fbbe2",
+    "timeToLive": 31536000
   }
  ]
 }
