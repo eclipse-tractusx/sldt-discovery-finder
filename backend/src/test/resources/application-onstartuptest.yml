@@ -34,10 +34,12 @@ discoveryfinder:
       endpointAddress: "https://edc.instance.de"
       description: "https://dummy.swaggerui.de"
       documentation: "swagger ui documentation"
+      timeToLive: 31536000
     - type: "EDC-1"
       endpointAddress: "https://edc1.instance.de"
       description: "https://dummy1.swaggerui.de"
       documentation: "swagger ui documentation"
+      timeToLive: 1
 
 logging:
   level:

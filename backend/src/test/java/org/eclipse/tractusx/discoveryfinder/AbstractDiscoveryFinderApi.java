@@ -19,7 +19,7 @@
  ********************************************************************************/
 package org.eclipse.tractusx.discoveryfinder;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.eclipse.tractusx.discoveryfinder.configuration.TestJwtTokenFactory;
 import org.eclipse.tractusx.discoveryfinder.repository.EndpointRepository;
@@ -37,6 +37,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.jayway.jsonpath.JsonPath;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -72,19 +73,17 @@ public abstract class AbstractDiscoveryFinderApi {
             .andExpect( status().isCreated() )
             .andReturn();
 
-      String sResult = result.getResponse().getContentAsString();
-      String resourceID = sResult.substring( sResult.lastIndexOf( ":" ) );
-      resourceID = resourceID.replace( "\"}", "" ).replace( ":\"", "" ).trim();
-
+      String resourceID = JsonPath.read( result.getResponse().getContentAsString(), "$.resourceId" );
       return resourceID;
    }
 
-   protected ObjectNode createDiscoveryEndpoint( String type, String endpointAddress, String description, String documentation ) {
+   protected ObjectNode createDiscoveryEndpoint( String type, String endpointAddress, String description, String documentation, Integer timeToLive ) {
       ObjectNode requestNode = mapper.createObjectNode();
       requestNode.put( "type", type );
       requestNode.put( "description", description );
       requestNode.put( "endpointAddress", endpointAddress );
       requestNode.put( "documentation", documentation );
+      requestNode.put("timeToLive", timeToLive);
       return requestNode;
    }
 

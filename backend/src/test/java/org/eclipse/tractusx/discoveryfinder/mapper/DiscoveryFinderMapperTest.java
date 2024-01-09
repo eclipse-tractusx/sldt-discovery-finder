@@ -40,7 +40,8 @@ public class DiscoveryFinderMapperTest {
             .type( "oen" )
             .endpointAddress( "oen-url-1" )
             .description( "description" )
-            .documentation( "swagger-oen-1" );
+            .documentation( "swagger-oen-1" )
+            .timeToLive( 31536000 );
 
       // then
       Endpoint actual = discoveryFinderMapper.fromApiDto( givenApiDto );
@@ -52,6 +53,7 @@ public class DiscoveryFinderMapperTest {
       Assertions.assertThat( actual.getDescription() ).isEqualTo( givenApiDto.getDescription() );
       Assertions.assertThat( actual.getDescription() ).isEqualTo( givenApiDto.getDescription() );
       Assertions.assertThat( actual.getResourceId() ).isNotNull();
+      Assertions.assertThat( actual.getTimeToLive() ).isEqualTo( givenApiDto.getTimeToLive() );
    }
 
    @Test
@@ -70,7 +72,7 @@ public class DiscoveryFinderMapperTest {
       UUID givenResourceID = UUID.randomUUID();
 
       Endpoint givenDto = new Endpoint(
-            givenUuid, "oen", "description", "oen-url-2", "swagger-oen-1", givenResourceID );
+            givenUuid, "oen", "description", "oen-url-2", "swagger-oen-1", givenResourceID, 31536000 );
 
       // when
       DiscoveryEndpoint actual = discoveryFinderMapper.toApiDto( givenDto );
@@ -81,6 +83,7 @@ public class DiscoveryFinderMapperTest {
       Assertions.assertThat( actual.getEndpointAddress() ).isEqualTo( givenDto.getEndpointAddress() );
       Assertions.assertThat( actual.getDescription() ).isEqualTo( givenDto.getDescription() );
       Assertions.assertThat( actual.getResourceId() ).isEqualTo( givenResourceID.toString() );
+      Assertions.assertThat( actual.getTimeToLive() ).isEqualTo( givenDto.getTimeToLive() );
    }
 
    @Test
@@ -90,7 +93,7 @@ public class DiscoveryFinderMapperTest {
       UUID givenResourceID = UUID.randomUUID();
 
       Endpoint givenDto = new Endpoint(
-            givenUuid, "oen", "description", "oen-url-2", "swagger-oen-1", givenResourceID );
+            givenUuid, "oen", "description", "oen-url-2", "swagger-oen-1", givenResourceID, 31536000 );
       EndpointCollectionDto givenEndpointCollectionDto = EndpointCollectionDto.builder().endpoints( List.of( givenDto ) ).build();
 
       // when 
@@ -103,5 +106,6 @@ public class DiscoveryFinderMapperTest {
       Assertions.assertThat( actual.getEndpoints().get( 0 ).getEndpointAddress() ).isEqualTo( givenDto.getEndpointAddress() );
       Assertions.assertThat( actual.getEndpoints().get( 0 ).getDescription() ).isEqualTo( givenDto.getDescription() );
       Assertions.assertThat( actual.getEndpoints().get( 0 ).getResourceId() ).isEqualTo( givenDto.getResourceId().toString() );
+      Assertions.assertThat( actual.getEndpoints().get( 0 ).getTimeToLive() ).isEqualTo( givenDto.getTimeToLive() );
    }
 }

@@ -38,6 +38,7 @@ discoveryfinder:
   #        endpointAddress:
   #        description:
   #        documentation:
+  #        timeToLive:
   idp:
     issuerUri: https://idp-url
     publicClientId: idpClientID
