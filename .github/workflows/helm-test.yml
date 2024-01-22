@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
-# Copyright (c) 2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -79,11 +79,16 @@ jobs:
         run: ct install --charts charts/discoveryfinder --config charts/chart-testing-config.yaml
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
+      - name: Generate random password (This password is only a placeholder for the next step and will not used). The postgresPassword/password will be set via postgres-init.yaml.
+        id: generate-password
+        run: |
+            echo "PASSWORD=PLACEHOLDER_PW" >> $GITHUB_ENV
+          
       - name: Run helm upgrade
         run: |
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
             helm install discoveryfinder tractusx-dev/discoveryfinder --version ${{ github.event.inputs.upgrade_from || '0.1.12' }}
             helm dependency update charts/discoveryfinder
-            helm upgrade discoveryfinder charts/discoveryfinder
+            helm upgrade discoveryfinder charts/discoveryfinder --set global.postgresql.auth.postgresPassword=$PASSWORD --set global.postgresql.auth.password=$PASSWORD
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
