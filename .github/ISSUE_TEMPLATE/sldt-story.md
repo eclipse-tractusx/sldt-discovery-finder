@@ -1,7 +1,7 @@
 ---
 name: Create a issue
 about: Create a new userstory, bug, task
-project: SLDT Board
+projects: SLDT Board
 ---
 <!-- 
 A clear and concise description of what the desired story will look like. 
