@@ -80,4 +80,4 @@ postgresql:
     password:
     database: discoveryfinder
     # -- Secret contains passwords for username postgres.
-    existingSecret: secret-postgres-init
+    existingSecret: secret-discoveryfinder-postgres-init
