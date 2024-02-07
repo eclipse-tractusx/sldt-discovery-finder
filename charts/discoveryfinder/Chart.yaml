@@ -23,11 +23,11 @@ home: https://eclipse-tractusx.github.io/
 sources:
   - https://github.com/eclipse-tractusx/sldt-discovery-finder
 type: application
-version: 0.1.18
+version: 0.2.0
 appVersion: 0.2.7
 
 dependencies:
   - repository: https://charts.bitnami.com/bitnami
     name: postgresql
-    version: 12.2.3
+    version: 12.12.10
     condition: enablePostgres
