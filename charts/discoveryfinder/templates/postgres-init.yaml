@@ -1,3 +1,4 @@
+{{- if .Values.enablePostgres }}
 # Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
 # Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
@@ -16,7 +17,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
-{{- if .Values.enablePostgres }}
+
 apiVersion: v1
 kind: Secret
 metadata:
