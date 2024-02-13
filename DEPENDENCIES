@@ -8,7 +8,7 @@ maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.15.3, 
 maven/mavencentral/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.15.3, Apache-2.0, approved, #7930
 maven/mavencentral/com.fasterxml.jackson.module/jackson-module-parameter-names/2.15.3, Apache-2.0, approved, #8803
 maven/mavencentral/com.fasterxml/classmate/1.6.0, Apache-2.0, approved, clearlydefined
-maven/mavencentral/com.github.jsqlparser/jsqlparser/4.6, LGPL-2.1 OR Apache-2.0, restricted, clearlydefined
+maven/mavencentral/com.github.jsqlparser/jsqlparser/4.6, Apache-2.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-2.1-only, approved, #13221
 maven/mavencentral/com.github.stephenc.jcip/jcip-annotations/1.0-1, Apache-2.0, approved, CQ21949
 maven/mavencentral/com.h2database/h2/2.1.214, (EPL-1.0 AND MPL-2.0) AND (EPL-1.0 AND MPL-2.0 AND LGPL-3.0-or-later) AND BSD-3-Clause AND LicenseRef-Public-Domain, approved, #2713
 maven/mavencentral/com.jayway.jsonpath/json-path/2.8.0, Apache-2.0, approved, clearlydefined
