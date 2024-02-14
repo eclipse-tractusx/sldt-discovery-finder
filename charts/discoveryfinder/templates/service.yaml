@@ -17,18 +17,16 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-{{- $deployment_name := printf "cx-%s" .Release.Name }}
-{{- $svc_name := printf "%s-svc" $deployment_name }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $svc_name }}
+  name: {{ include "df.fullname" . }}
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    {{- include "df.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.discoveryfinder.service.type }}
   ports:
     - port:  {{ .Values.discoveryfinder.service.port }}
       targetPort: {{ .Values.discoveryfinder.containerPort }}
   selector:
-    app: {{ $deployment_name }}
+    {{- include "df.selectorLabels" . | nindent 4 }}

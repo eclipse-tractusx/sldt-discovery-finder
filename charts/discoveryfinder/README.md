@@ -26,7 +26,7 @@ helm install discoveryfinder -n discovery charts/discoveryfinder
 ## Values
 
 | Key | Type | Default | Description |
-|-----|------|---------|-------------|
+|-----|------|-------|-------------|
 | discoveryfinder.authentication | bool | `true` |  |
 | discoveryfinder.containerPort | int | `4243` |  |
 | discoveryfinder.dataSource.driverClassName | string | `"org.postgresql.Driver"` |  |
@@ -57,9 +57,17 @@ helm install discoveryfinder -n discovery charts/discoveryfinder
 | discoveryfinder.service.port | int | `8080` |  |
 | discoveryfinder.service.type | string | `"ClusterIP"` |  |
 | enablePostgres | bool | `true` |  |
+| discoveryfinder.livenessProbe.initialDelaySeconds                        | int    | `100`                                                                                                                                                        |  |
+| discoveryfinder.livenessProbe.failureThreshold                        | int    | `3`                                                                                                                                                          |  |
+| discoveryfinder.livenessProbe.periodSeconds                        | int    | `3`                                                                                                                                                          |  |
+| discoveryfinder.readinessProbe.initialDelaySeconds                        | int    | `100`                                                                                                                                                        |  |
+| discoveryfinder.readinessProbe.failureThreshold                        | int    | `3`                                                                                                                                                          |  |
+| discoveryfinder.readinessProbe.periodSeconds                        | int    | `3`                                                                                                                                                          |  |
 | postgresql.auth.database | string | `"discoveryfinder"` |  |
-| postgresql.auth.password | string | `"password"` |  |
+| postgresql.auth.password | string | `` |  |
 | postgresql.auth.username | string | `"catenax"` |  |
+| postgresql.auth.existingSecret | string | `"secret-discoveryfinder-postgres-init"` |  |
+
 | postgresql.primary.persistence.enabled | bool | `true` |  |
 | postgresql.primary.persistence.size | string | `"50Gi"` |  |
 | postgresql.service.ports.postgresql | int | `5432` |  |
