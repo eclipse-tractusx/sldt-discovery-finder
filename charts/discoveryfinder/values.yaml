@@ -60,8 +60,8 @@ discoveryfinder:
     ## The url, user, and password parameter will be ignored if 'enablePostgres' is set to true.
     ## In that case the postgresql auth parameters are used.
     url: jdbc:postgresql://database:5432
-    user: user
-    password: password
+    user:
+    password:
   ingress:
     enabled: false
     tls: false
