@@ -23,8 +23,8 @@ home: https://eclipse-tractusx.github.io/
 sources:
   - https://github.com/eclipse-tractusx/sldt-discovery-finder
 type: application
-version: 0.2.3
-appVersion: 0.2.7
+version: 0.2.4-RC1
+appVersion: 0.3.0-RC1
 
 dependencies:
   - repository: https://charts.bitnami.com/bitnami
