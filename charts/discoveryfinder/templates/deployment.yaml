@@ -1,37 +1,37 @@
-# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
-# Copyright (c) 2023 Contributors to the Eclipse Foundation
-  #
-  # See the NOTICE file(s) distributed with this work for additional
-  # information regarding copyright ownership.
-  #
-  # This program and the accompanying materials are made available under the
-  # terms of the Apache License, Version 2.0 which is available at
-  # https://www.apache.org/licenses/LICENSE-2.0.
-  #
-  # Unless required by applicable law or agreed to in writing, software
-  # distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-  # License for the specific language governing permissions and limitations
-  # under the License.
-  #
-  # SPDX-License-Identifier: Apache-2.0
-  ###############################################################
-{{- $deployment_name := printf "cx-%s" .Release.Name }}
-{{- $sec_name := printf "%s-sec" $deployment_name }}
-{{- $svc_name := printf "%s-svc" $deployment_name }}
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
+#
+# See the NOTICE file(s) distributed with this work for additional
+# information regarding copyright ownership.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License, Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+###############################################################
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $deployment_name }}
+  name: {{ include "df.fullname" . }}
+  labels:
+    {{- include "df.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.discoveryfinder.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $deployment_name }}
+      {{- include "df.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ $deployment_name }}
+        {{- include "df.selectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         runAsUser: 100
@@ -40,7 +40,7 @@ spec:
           configMap:
             name: properties-discoveryfinder
       containers:
-        - name: {{ $deployment_name }}
+        - name: {{ .Chart.Name }}
           image: {{ .Values.discoveryfinder.image.registry }}/{{ .Values.discoveryfinder.image.repository }}:{{ .Values.discoveryfinder.image.version | default .Chart.AppVersion }}
           imagePullPolicy: {{ .Values.discoveryfinder.image.imagePullPolicy }}
           volumeMounts:
@@ -60,19 +60,23 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: {{ .Values.discoveryfinder.containerPort }}
-            initialDelaySeconds: 100
-            periodSeconds: 3
-            failureThreshold: 3
+            initialDelaySeconds: {{ .Values.discoveryfinder.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.discoveryfinder.livenessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.discoveryfinder.livenessProbe.failureThreshold }}
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: {{ .Values.discoveryfinder.containerPort }}
-            initialDelaySeconds: 60
-            periodSeconds: 3
-            failureThreshold: 3
+            initialDelaySeconds: {{ .Values.discoveryfinder.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.discoveryfinder.readinessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.discoveryfinder.readinessProbe.failureThreshold }}
           envFrom:
             - secretRef:
-                name: {{ $sec_name }}
+                name: {{ include "df.fullname" . }}
+            {{- if .Values.enablePostgres }}
+            - secretRef:
+                name: {{ .Values.postgresql.auth.existingSecret }}
+            {{- end }}
           resources:
 {{ .Values.discoveryfinder.resources | toYaml | indent 12 }}
       imagePullSecrets:

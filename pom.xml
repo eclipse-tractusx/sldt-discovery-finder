@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright (c) 2021-2022 Contributors to the Eclipse Foundation
+    Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+    Copyright (c) 2021 Contributors to the Eclipse Foundation
 
     See the NOTICE file(s) distributed with this work for additional
     information regarding copyright ownership.
@@ -24,7 +25,7 @@
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
-      <version>3.1.6</version> <!-- need to be repeated in properties section for technical purposes -->
+      <version>3.2.3</version> <!-- need to be repeated in properties section for technical purposes -->
       <relativePath/> <!-- lookup parent from repository and not the filesystem -->
    </parent>
 
@@ -64,7 +65,7 @@
 
       <!-- version properties -->
       <!-- framework and base stuff -->
-      <spring.boot.version>3.1.6</spring.boot.version>
+      <spring.boot.version>3.2.3</spring.boot.version>
       <lombok.version>1.18.24</lombok.version>
       <openapi-starter-webmvc-ui.version>2.0.2</openapi-starter-webmvc-ui.version>
       <swagger-annotations.version>1.5.20</swagger-annotations.version>
@@ -77,7 +78,7 @@
       <logback.version>1.4.14</logback.version>
       <!-- persistence-->
       <h2.version>2.1.214</h2.version>
-      <postgresql.version>42.5.4</postgresql.version>
+      <postgresql.version>42.7.2</postgresql.version>
       <mapstruct.version>1.5.3.Final</mapstruct.version>
       <mapstruct.lombok.version>0.2.0</mapstruct.lombok.version>
       <liquibase.version>4.19.1</liquibase.version>

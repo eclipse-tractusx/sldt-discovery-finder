@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
-# Copyright (c) 2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -16,7 +16,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
-
+nameOverride:
+fullnameOverride:
 enablePostgres: true
 
 discoveryfinder:
@@ -45,14 +46,22 @@ discoveryfinder:
   service:
     port: 8080
     type: ClusterIP
+  livenessProbe:
+    failureThreshold: 3
+    periodSeconds: 3
+    initialDelaySeconds: 100
+  readinessProbe:
+    failureThreshold: 3
+    periodSeconds: 3
+    initialDelaySeconds: 100
   dataSource:
     driverClassName: org.postgresql.Driver
     sqlInitPlatform: pg
     ## The url, user, and password parameter will be ignored if 'enablePostgres' is set to true.
     ## In that case the postgresql auth parameters are used.
     url: jdbc:postgresql://database:5432
-    user: user
-    password: password
+    user:
+    password:
   ingress:
     enabled: false
     tls: false
@@ -77,5 +86,7 @@ postgresql:
       postgresql: 5432
   auth:
     username: catenax
-    password: password
+    password:
     database: discoveryfinder
+    # -- Secret contains passwords for username postgres.
+    existingSecret: secret-discoveryfinder-postgres-init
