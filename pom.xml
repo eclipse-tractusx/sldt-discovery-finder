@@ -67,7 +67,7 @@
       <!-- framework and base stuff -->
       <spring.boot.version>3.2.3</spring.boot.version>
       <lombok.version>1.18.24</lombok.version>
-      <openapi-starter-webmvc-ui.version>2.0.2</openapi-starter-webmvc-ui.version>
+      <openapi-starter-webmvc-ui.version>2.3.0</openapi-starter-webmvc-ui.version>
       <swagger-annotations.version>1.5.20</swagger-annotations.version>
       <swagger-core-version>2.0.0</swagger-core-version>
       <jackson-nullable.version>0.2.5</jackson-nullable.version>
