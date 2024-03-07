@@ -19,43 +19,10 @@ There are two actors who interact with the Discovery Finder
 | Keycloak      | Keycloak is used for token validation                                                                        |                                                       |
 
 
-## Disovery Finder Api
+## Discovery Finder Api
 
 The Discovery Finder provides a Swagger-Interface for all its endpoints:
 https://semantics.int.demo.catena-x.net/discoveryfinder/swagger-ui/index.html
-
-#### Search request
-![](media/search_DF.PNG)
-
-**Reqiest body**
-
-![](media/Request_Search_DF.PNG)
-
-**Response**
-
-![](media/Response_Search_DF.PNG)
-
-#### Add request
-![add endpoint](media/setDF_Endpoint.PNG)
-
-**Request body**
-
-![request body](media/Request_Set_DF_Endpoint.PNG)
-
-**Response**
-
-![response](media/Response_Set_DF_Endpoint.PNG)
-
-#### Delete request
-![delete endpoint](media/Delete_DF.PNG)
-
-ResourceID in path
-
-![ResourceID ](media/ResourceID_DF.PNG)
-
-**Response**
-
-![response](media/Response_Delete_DF.PNG)
 
 ## Authentication & Authorization
 The service is secured by a OAuth2 compliant authorization. Every API call has to provide a

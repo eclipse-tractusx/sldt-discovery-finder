@@ -1,8 +1,13 @@
 ## 3 System scope and context
 
 ### Business Context
-
-![](media/BusinessContext.PNG)
+```mermaid
+graph LR
+    Consumer_App[Consumer App] -- "requests  endpoint for type 'oen'" --> Discovery_Finder[Discovery Finder]
+    Discovery_Finder -- "responses with 'endpoint https://..'" --> Consumer_App
+    Keycloak -- "administrates the authorization token" <--> Discovery_Finder
+    BPN_Discovery[BPN Discovery] -- "registers himself at startup" --> Discovery_Finder
+```
 
 | Neighbor      | Description                                          |
 |---------------|------------------------------------------------------|
@@ -13,7 +18,13 @@
 
 ### Technical Context
 
-![](media/TechnicalContext.PNG)
+```mermaid
+graph LR
+    Consumer_App[Consumer App] -- "request via post http: \api" --> Discovery_Finder[Discovery Finder]
+    Discovery_Finder -- "responses via post http" --> Consumer_App
+    Keycloak -- "administrates the authorization token" <--> Discovery_Finder
+    BPN_Discovery[BPN Discovery] -- "post request via http:\ registers himself at startup" --> Discovery_Finder
+```
 
 | Neighbor      | Description                                                              |
 |---------------|--------------------------------------------------------------------------|

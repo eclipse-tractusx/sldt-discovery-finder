@@ -1,8 +1,23 @@
 ## 4 Runtime-view
 
 ### Search request
+```mermaid
+sequenceDiagram
+    participant ConsumerApp as ConsumerApp
+    participant DiscoveryFinderApiDelegate as Discovery EndpointFinder ApiDelegate
+    participant DiscoveryFinderService as DiscoveryFinder Service
+    participant DiscoveryFinderRepository as DiscoveryFinder Repository
+    participant DiscoveryFinderMapper as DiscoveryFinder Mapper
 
-![](media/SearchFlow.PNG)
+    ConsumerApp->>+DiscoveryFinderApiDelegate: post /api/administration/connectors/discovery/search
+    DiscoveryFinderApiDelegate->>+DiscoveryFinderService: findDiscovery Endpoints()
+    DiscoveryFinderService->>+DiscoveryFinderRepository: findAll()/findEndpointByTypeIn
+    DiscoveryFinderRepository->>-DiscoveryFinderService: List<Endpoint>
+    DiscoveryFinderService->>-DiscoveryFinderApiDelegate: Endpoint CollectionDto
+    DiscoveryFinderApiDelegate->>+DiscoveryFinderMapper: toApiDto()
+    DiscoveryFinderMapper->>-DiscoveryFinderApiDelegate: DiscoveryEndpointCollection
+    DiscoveryFinderApiDelegate->>-ConsumerApp: ResponseEntity<DiscoveryEndpointCollection>
+```
 
 1.  The ConsumerApp sends a request of a certain type to
     DiscoveryEndpointFinderApiDelegate.
@@ -20,8 +35,23 @@
     ConsumerApp with the found results.
 
 ### Add request
+```mermaid
+sequenceDiagram
+    participant ConsumerApp as ConsumerApp
+    participant DiscoveryFinderApiDelegate as Discovery EndpointFinder ApiDelegate
+    participant DiscoveryFinderService as DiscoveryFinder Service
+    participant DiscoveryFinderMapper as DiscoveryFinder Mapper
+    participant DiscoveryFinderRepository as DiscoveryFinder Repository
 
-![](media/AddFlow.PNG)
+    ConsumerApp->>+DiscoveryFinderApiDelegate: post /api/administration/connectors/discovery
+    DiscoveryFinderApiDelegate->>+DiscoveryFinderService: save()
+    DiscoveryFinderService->>+DiscoveryFinderMapper: fromApiDto
+    DiscoveryFinderMapper->>-DiscoveryFinderService: Endpoint
+    DiscoveryFinderService->>+DiscoveryFinderRepository: save()
+    DiscoveryFinderRepository->>-DiscoveryFinderService: Endpoint
+    DiscoveryFinderService->>-DiscoveryFinderApiDelegate:Endpoint
+    DiscoveryFinderApiDelegate->>-ConsumerApp: ResponseEntity<Endpoint>
+```
 
 1.  The Data Provider sends a request with a given endpoint to
     DiscoveryEndpointFinderApiDelegate.
@@ -34,8 +64,24 @@
     entry in the database.
 
 ### Delete request
+```mermaid
+sequenceDiagram
+    participant ConsumerApp as ConsumerApp
+    participant DiscoveryFinderApiDelegate as Discovery EndpointFinder ApiDelegate
+    participant DiscoveryFinderService as DiscoveryFinder Service
+    participant UuidUtils as UuidUtils
+    participant DiscoveryFinderRepository as Endpoint Repository
 
-![](media/DeleteFlow.PNG)
+    ConsumerApp->>+DiscoveryFinderApiDelegate: delete /api/administration/connectors/discovery/{resourceId}
+    DiscoveryFinderApiDelegate->>+DiscoveryFinderService: deleteEndpoint()
+    DiscoveryFinderService->>+UuidUtils: validateUUID()
+    DiscoveryFinderService->>+DiscoveryFinderRepository: findEndpointByResourceId()
+    DiscoveryFinderRepository->>-DiscoveryFinderService: Endpoint
+    DiscoveryFinderService->>+DiscoveryFinderRepository: deleteById()
+    DiscoveryFinderRepository->>-DiscoveryFinderService: delete successful
+    DiscoveryFinderService->>- DiscoveryFinderApiDelegate: delete successful
+    DiscoveryFinderApiDelegate->>- ConsumerApp: ResponseEntity<void>
+```
 
 1.  The Data Provider sends a request to delete an entry to
     DiscoveryEndpointFinderApiDelegate.
