@@ -38,8 +38,8 @@ discoveryfinder:
           documentation: https://portal-backend.int.catena-x.net/api/administration/swagger/index.html
           timeToLive: "31536000"
   idp:
-    issuerUri: <path:semantics/data/authentication#keycloak-idp>
-    publicClientId: <path:semantics/data/authentication#idpClientIdDiscoveryFinder>
+    issuerUri: <path:semantics/data/commons#keycloak-idp>
+    publicClientId: <path:semantics/data/discoveryfinder#idpClientIdDiscoveryFinder>
   service:
     port: 8080
     type: ClusterIP
@@ -50,7 +50,7 @@ discoveryfinder:
     ## In that case the postgresql auth parameters are used.
     url: jdbc:postgresql://semantic-services-postgresql:5432/discoveryfinder
     user: catenax
-    password: <path:semantics/data/authentication#dbpassword>
+    password: <path:semantics/data/discoveryfinder#dbpassword>
   ingress:
     enabled: true
     tls: true
@@ -79,5 +79,5 @@ postgresql:
       postgresql: 5432
   auth:
     username: catenax
-    password: <path:semantics/data/authentication#dbpassword>
+    password: <path:semantics/data/discoveryfinder#dbpassword>
     database: discoveryfinder
