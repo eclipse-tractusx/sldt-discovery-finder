@@ -82,17 +82,15 @@ discoveryfinder:
       cpu: 250m
       memory: 1024Mi
 
-postgresql:
-  primary:
-    persistence:
-      enabled: true
-      size: 50Gi
-  service:
-    ports:
-      postgresql: 5432
-  auth:
-    username: catenax
-    password:
-    database: discoveryfinder
-    # -- Secret contains passwords for username postgres.
-    existingSecret: secret-discoveryfinder-postgres-init
+  postgresql:
+    primary:
+      persistence:
+        enabled: true
+        size: 8Gi
+    service:
+      ports:
+        postgresql: 5432
+    auth:
+      username: catenax
+      password: <path:semantics/data/authentication#dbpassword>
+      database: discoveryfinder
