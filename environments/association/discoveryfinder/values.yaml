@@ -27,7 +27,7 @@ discoveryfinder:
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
-  host: semantics.int.catena-x.net
+  host: localhost
   ## If 'authentication' is set to false, no OAuth authentication is enforced
   authentication: true
   ## If initial endpoints need to be created when the application starts, enable the initialEndpoints block and add initialEndpoints.
@@ -63,17 +63,11 @@ discoveryfinder:
     user:
     password:
   ingress:
-    enabled: true
-    tls: true
+    enabled: false
+    tls: false
     urlPrefix: /discoveryfinder
     className: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
-      nginx.ingress.kubernetes.io/use-regex: "true"
-      nginx.ingress.kubernetes.io/enable-cors: "true"
-      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-      nginx.ingress.kubernetes.io/x-forwarded-prefix: /discoveryfinder
+    annotations: {}
   resources:
     limits:
       cpu: 750m
@@ -86,11 +80,13 @@ postgresql:
   primary:
     persistence:
       enabled: true
-      size: 8Gi
+      size: 50Gi
   service:
     ports:
       postgresql: 5432
   auth:
     username: catenax
-    password: <path:semantics/data/authentication#dbpassword>
+    password:
     database: discoveryfinder
+    # -- Secret contains passwords for username postgres.
+    existingSecret: secret-discoveryfinder-postgres-init
