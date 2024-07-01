@@ -16,9 +16,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
+enablePostgres: true
 
 discoveryfinder:
-  enablePostgres: true
   image:
     imagePullPolicy: IfNotPresent
   imagePullSecrets:
@@ -27,7 +27,7 @@ discoveryfinder:
   containerPort: 4243
   host: semantics.int.catena-x.net
   ## If 'authentication' is set to false, no OAuth authentication is enforced
-  authentication: true
+  authentication: false
   properties:
     discoveryfinder:
       # Initial Endpoint for edc discovery with type bpn
