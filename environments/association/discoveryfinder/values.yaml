@@ -63,11 +63,17 @@ discoveryfinder:
     user:
     password:
   ingress:
-    enabled: false
-    tls: false
+    enabled: true
+    tls: true
     urlPrefix: /discoveryfinder
     className: nginx
-    annotations: {}
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+      nginx.ingress.kubernetes.io/x-forwarded-prefix: /discoveryfinder
   resources:
     limits:
       cpu: 750m
