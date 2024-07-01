@@ -27,7 +27,7 @@ discoveryfinder:
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
-  host: localhost
+  host: semantics.int.demo.catena-x.net
   ## If 'authentication' is set to false, no OAuth authentication is enforced
   authentication: true
   ## If initial endpoints need to be created when the application starts, enable the initialEndpoints block and add initialEndpoints.
@@ -86,13 +86,11 @@ postgresql:
   primary:
     persistence:
       enabled: true
-      size: 50Gi
+      size: 8Gi
   service:
     ports:
       postgresql: 5432
   auth:
     username: catenax
-    password:
+    password: <path:semantics/data/authentication#dbpassword>
     database: discoveryfinder
-    # -- Secret contains passwords for username postgres.
-    existingSecret: secret-discoveryfinder-postgres-init
