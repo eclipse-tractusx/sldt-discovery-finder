@@ -21,28 +21,30 @@ fullnameOverride:
 enablePostgres: true
 
 discoveryfinder:
+  enablePostgres: true
   image:
     registry: docker.io
     repository: tractusx/sldt-discovery-finder
     imagePullPolicy: IfNotPresent
   replicaCount: 1
   containerPort: 4243
-  host: localhost
+  host: semantics.int.demo.catena-x.net
   ## If 'authentication' is set to false, no OAuth authentication is enforced
-  authentication: true
+  authentication: false
   ## If initial endpoints need to be created when the application starts, enable the initialEndpoints block and add initialEndpoints.
   ## Type and endpointAddress is required is enabled.
   properties:
     discoveryfinder:
-  #    initialEndpoints:
-  #      - type:
-  #        endpointAddress:
-  #        description:
-  #        documentation:
-  #        timeToLive:
+      # Initial Endpoint for edc discovery with type bpn
+      initialEndpoints:
+        - type: bpn
+          endpointAddress: https://portal-backend.int.demo.catena-x.net/api/administration/Connectors/discovery
+          description: Service to discover connector endpoints based on bpns
+          documentation: https://portal-backend.int.demo.catena-x.net/api/administration/swagger/index.html
+          timeToLive: "31536000"
   idp:
-    issuerUri: https://idp-url
-    publicClientId: idpClientID
+    issuerUri: <path:semantics/data/authentication#keycloak-idp>
+    publicClientId: <path:semantics/data/authentication#idpClientIdDiscoveryFinder>
   service:
     port: 8080
     type: ClusterIP
@@ -59,34 +61,36 @@ discoveryfinder:
     sqlInitPlatform: pg
     ## The url, user, and password parameter will be ignored if 'enablePostgres' is set to true.
     ## In that case the postgresql auth parameters are used.
-    url: jdbc:postgresql://database:5432
-    user:
-    password:
+    url: jdbc:postgresql://semantic-services-postgresql:5432/discoveryfinder
+    user: catenax
+    password: <path:semantics/data/authentication#dbpassword>
   ingress:
-    enabled: false
-    tls: false
+    enabled: true
+    tls: true
     urlPrefix: /discoveryfinder
     className: nginx
-    annotations: {}
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+      nginx.ingress.kubernetes.io/x-forwarded-prefix: /discoveryfinder
   resources:
     limits:
-      cpu: 750m
-      memory: 1024Mi
+      memory: "1024Mi"
     requests:
-      cpu: 250m
-      memory: 1024Mi
+      memory: "512Mi"
 
 postgresql:
   primary:
     persistence:
       enabled: true
-      size: 50Gi
+      size: 8Gi
   service:
     ports:
       postgresql: 5432
   auth:
     username: catenax
-    password:
+    password: <path:semantics/data/authentication#dbpassword>
     database: discoveryfinder
-    # -- Secret contains passwords for username postgres.
-    existingSecret: secret-discoveryfinder-postgres-init
