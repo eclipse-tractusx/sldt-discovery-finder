@@ -18,7 +18,7 @@ spec:
     namespace: product-semantics
     server: 'https://kubernetes.default.svc'
   source:
-    path: environments/association/helm-values
+    path: environments/association/discoveryfinder
     repoURL: 'https://github.com/eclipse-tractusx/sldt-discovery-finder.git'
     targetRevision: feature/temp-deployment-values
     plugin:
