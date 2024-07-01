@@ -28,7 +28,7 @@ discoveryfinder:
     containerPort: 4243
     host: semantics.int.catena-x.net
     ## If 'authentication' is set to false, no OAuth authentication is enforced
-    authentication: false
+    authentication: true
     properties:
       discoveryfinder:
         # Initial Endpoint for edc discovery with type bpn
