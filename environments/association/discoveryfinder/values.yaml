@@ -21,7 +21,6 @@ fullnameOverride:
 enablePostgres: true
 
 discoveryfinder:
-  enablePostgres: true
   image:
     registry: docker.io
     repository: tractusx/sldt-discovery-finder
