@@ -69,15 +69,15 @@ discoveryfinder:
     requests:
       memory: "512Mi"
 
-  postgresql:
-    primary:
-      persistence:
-        enabled: true
-        size: 8Gi
-    service:
-      ports:
-        postgresql: 5432
-    auth:
-      username: catenax
-      password: <path:semantics/data/authentication#dbpassword>
-      database: discoveryfinder
+postgresql:
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
+  service:
+    ports:
+      postgresql: 5432
+  auth:
+    username: catenax
+    password: <path:semantics/data/authentication#dbpassword>
+    database: discoveryfinder
