@@ -1,5 +1,5 @@
-# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
-# Copyright (c) 2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -16,68 +16,77 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
+nameOverride:
+fullnameOverride:
 enablePostgres: true
 
 discoveryfinder:
   image:
+    registry: docker.io
+    repository: tractusx/sldt-discovery-finder
     imagePullPolicy: IfNotPresent
-  imagePullSecrets:
-    - name: machineuser-pull-secret-ro
   replicaCount: 1
   containerPort: 4243
-  host: semantics.int.catena-x.net
+  host: localhost
   ## If 'authentication' is set to false, no OAuth authentication is enforced
-  authentication: false
+  authentication: true
+  ## If initial endpoints need to be created when the application starts, enable the initialEndpoints block and add initialEndpoints.
+  ## Type and endpointAddress is required is enabled.
   properties:
     discoveryfinder:
-      # Initial Endpoint for edc discovery with type bpn
-      initialEndpoints:
-        - type: bpn
-          endpointAddress: https://portal-backend.int.catena-x.net/api/administration/Connectors/discovery
-          description: Service to discover connector endpoints based on bpns
-          documentation: https://portal-backend.int.catena-x.net/api/administration/swagger/index.html
-          timeToLive: "31536000"
+  #    initialEndpoints:
+  #      - type:
+  #        endpointAddress:
+  #        description:
+  #        documentation:
+  #        timeToLive:
   idp:
-    issuerUri: <path:semantics/data/commons#keycloak-idp>
-    publicClientId: <path:semantics/data/discoveryfinder#idpClientIdDiscoveryFinder>
+    issuerUri: https://idp-url
+    publicClientId: idpClientID
   service:
     port: 8080
     type: ClusterIP
+  livenessProbe:
+    failureThreshold: 3
+    periodSeconds: 3
+    initialDelaySeconds: 100
+  readinessProbe:
+    failureThreshold: 3
+    periodSeconds: 3
+    initialDelaySeconds: 100
   dataSource:
     driverClassName: org.postgresql.Driver
     sqlInitPlatform: pg
     ## The url, user, and password parameter will be ignored if 'enablePostgres' is set to true.
     ## In that case the postgresql auth parameters are used.
-    url: jdbc:postgresql://semantic-services-postgresql:5432/discoveryfinder
-    user: catenax
-    password: <path:semantics/data/discoveryfinder#dbpassword>
+    url: jdbc:postgresql://database:5432
+    user:
+    password:
   ingress:
-    enabled: true
-    tls: true
+    enabled: false
+    tls: false
     urlPrefix: /discoveryfinder
     className: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
-      nginx.ingress.kubernetes.io/use-regex: "true"
-      nginx.ingress.kubernetes.io/enable-cors: "true"
-      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-      nginx.ingress.kubernetes.io/x-forwarded-prefix: /discoveryfinder
+    annotations: {}
   resources:
     limits:
-      memory: "1024Mi"
+      cpu: 750m
+      memory: 1024Mi
     requests:
-      memory: "512Mi"
+      cpu: 250m
+      memory: 1024Mi
 
 postgresql:
   primary:
     persistence:
       enabled: true
-      size: 8Gi
+      size: 50Gi
   service:
     ports:
       postgresql: 5432
   auth:
     username: catenax
-    password: <path:semantics/data/discoveryfinder#dbpassword>
+    password:
     database: discoveryfinder
+    # -- Secret contains passwords for username postgres.
+    existingSecret: secret-discoveryfinder-postgres-init
