@@ -39,7 +39,7 @@ discoveryfinder:
             documentation: https://portal-backend.int.catena-x.net/api/administration/swagger/index.html
             timeToLive: "31536000"
     idp:
-      issuerUri: https://centralidp.int.catena-x.net/auth/realms/CX-Central
+      issuerUri: <path:semantics/data/commons#keycloak-idp>
       publicClientId: <path:semantics/data/discoveryfinder#idpClientIdDiscoveryFinder>
     service:
       port: 8080
