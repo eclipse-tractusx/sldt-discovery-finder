@@ -21,7 +21,6 @@ discoveryfinder:
   enablePostgres: true
   discoveryfinder:
     image:
-      version: "main"
       imagePullPolicy: IfNotPresent
     imagePullSecrets:
       - name: machineuser-pull-secret-ro
