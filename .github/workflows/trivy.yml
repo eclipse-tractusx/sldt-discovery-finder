@@ -54,7 +54,7 @@ jobs:
           hide-progress: false
           vuln-type: "os,library"
           exit-code: "1" # Trivy exits with code 1 if vulnerabilities are found, causing the workflow step to fail.
-          limit-severities-for-sarif: true"
+          limit-severities-for-sarif: true
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
