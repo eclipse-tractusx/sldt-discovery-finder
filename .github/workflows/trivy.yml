@@ -54,7 +54,7 @@ jobs:
           hide-progress: false
           vuln-type: "os,library"
           exit-code: "1" # Trivy exits with code 1 if vulnerabilities are found, causing the workflow step to fail.
-          limit-severities-for-sarif: true"
+          limit-severities-for-sarif: true
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
@@ -86,7 +86,7 @@ jobs:
         with:
           image-ref: "tractusx/sldt-discovery-finder:latest"
           format: "sarif"
-          output: "trivy-results-bpn-discovery.sarif"
+          output: "trivy-results-discovery-finder.sarif"
           severity: "CRITICAL,HIGH" # While vulnerabilities of all severities are reported in the SARIF output, the exit code and workflow failure are triggered only by these specified severities (CRITICAL or HIGH).
           # ignore-unfixed: true
           hide-progress: false
@@ -98,4 +98,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: "trivy-results-registry.sarif"
+          sarif_file: "trivy-results-discovery-finder.sarif"
