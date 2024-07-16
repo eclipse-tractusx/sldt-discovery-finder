@@ -79,5 +79,11 @@ spec:
             {{- end }}
           resources:
 {{ .Values.discoveryfinder.resources | toYaml | indent 12 }}
+          volumeMounts:
+            - mountPath: /tmp
+              name: empty-tmp
+      volumes:
+        - name: empty-tmp
+          emptyDir: {}
       imagePullSecrets:
 {{ .Values.discoveryfinder.imagePullSecrets | toYaml | indent 8 }}
