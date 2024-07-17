@@ -1,5 +1,6 @@
 ###############################################################
-# Copyright (c) 2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -16,8 +17,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
+
 product: "Discovery Finder"
 leadingRepository: "https://github.com/eclipse-tractusx/sldt-discovery-finder"
+openApiSpecs: https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/backend/src/main/resources/static/discovery-finder-openapi.yaml
 repositories:
   - name: "sldt-discovery-finder"
     usage: "This repository contains the source code for the SLDT Discovery Finder"
