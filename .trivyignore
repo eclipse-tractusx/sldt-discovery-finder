@@ -1,3 +1,4 @@
+###############################################################
 # Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
 # Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
@@ -16,18 +17,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
-apiVersion: v2
-name: discoveryfinder
-description: Tractus-X Discovery Finder Helm Chart
-home: https://eclipse-tractusx.github.io/
-sources:
-  - https://github.com/eclipse-tractusx/sldt-discovery-finder
-type: application
-version: 0.3.1
-appVersion: 0.4.0
 
-dependencies:
-  - repository: https://charts.bitnami.com/bitnami
-    name: postgresql
-    version: 12.12.10
-    condition: enablePostgres
+# List of false positives
+
+# List of resolved findings
+CVE-2024-34750
