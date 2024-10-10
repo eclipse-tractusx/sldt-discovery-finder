@@ -66,7 +66,6 @@
       <!-- version properties -->
       <!-- framework and base stuff -->
       <spring.boot.version>3.3.4</spring.boot.version>
-      <spring-framework.version>6.1.6</spring-framework.version>
       <lombok.version>1.18.34</lombok.version>
       <openapi-starter-webmvc-ui.version>2.0.2</openapi-starter-webmvc-ui.version>
       <swagger-annotations.version>1.5.20</swagger-annotations.version>
