@@ -31,7 +31,7 @@
 
    <groupId>org.eclipse.tractusx</groupId>
    <artifactId>discovery-finder</artifactId>
-   <version>0.5.0-RC1</version>
+   <version>0.5.0-RC2</version>
    <name>Tractus-X Discovery Finder</name>
    <description>Root Module of the Tractus-X Discovery Finder</description>
    <packaging>pom</packaging>
