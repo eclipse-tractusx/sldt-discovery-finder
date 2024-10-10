@@ -23,7 +23,7 @@
    <parent>
       <groupId>org.eclipse.tractusx</groupId>
       <artifactId>discovery-finder</artifactId>
-      <version>0.4.0</version>
+      <version>0.5.0-RC1</version>
       <relativePath>../pom.xml</relativePath>
    </parent>
    <groupId>org.eclipse.tractusx</groupId>
