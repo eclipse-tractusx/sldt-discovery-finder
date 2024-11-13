@@ -1,4 +1,4 @@
-## 6 Concept
+## 6 Crosscutting Concept
 
 ### Overall Concept
 
@@ -118,8 +118,48 @@ With all three roles it is possible to add and delete entries from the
 Discovery Finder Database. For searching the view role is sufficient.
 The credentials are set with entries in Helm Charts.
 
-### NOTICE
+### Authentication & Authorization
+The service is secured by a OAuth2 compliant authorization. Every API call has to provide a
+valid Bearer Token. Authorization is provided by a role based access. These roles are possible:
 
+| Role                      | Description                            |
+|---------------------------|----------------------------------------|
+| view_discovery_endpoint   | can search for BPN Discovery endpoints |
+| add_discovery_endpoint    | can add BPN Discovery endpoints        |
+| delete_discovery_endpoint | can delete BPN Discovery endpoints     |
+
+
+### Security Assessment
+#### Data Flow Diagram
+
+```mermaid
+%%{init: {"flowchart": {"curve": "linear"} }}%%
+flowchart
+    DC(Data Consumer \n <i>e.g. IR</i>)
+    DP(Data Provider)
+    K(Keycloak)
+    subgraph Discovery Finder
+    DF(Discovery Finder Backend)
+    DFDB[(Discovery Finder postgres)]
+    end
+    subgraph BPN Discovery
+    BD(BPN Discovery Backend)
+    BDDB[(BPN Discovery postgres \n <i>N instances per data \n asset type and usage</i>)]
+    end
+    
+    DC <-->|Token request| K
+    DP <-->|Token request| K
+    DF <-->|Request endpoint for given type| DC
+    DF <--> DFDB
+    K -.->|Provide public key for token validation| DF
+    BD <--> BDDB
+    DC <-->|Request BPN for specific type| BD
+    DP -->|Register BPN type key| BD
+    BD -->|Success/error message for registration| DP
+    K -.->|Provide public key for token validation| BD
+```
+
+### NOTICE
 This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 - SPDX-License-Identifier: Apache-2.0

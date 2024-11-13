@@ -28,10 +28,10 @@ The Discovery Finder is used to find an endpoint to a BPD Discovery for a certai
 
 | Role             | Description                                        | Goal, Intention                                             |
 |------------------|----------------------------------------------------|-------------------------------------------------------------|
-| Consumer         | uses a Discovery Finder                            | wants to find an Endpoint for a BPN Discovery to find a BPN |
-| Data Provider    |                                                    | wants that his EDC / Digital Twin can be found              |
+| Data Consumer    | The data consumer uses the Discovery Finder to search for endpoints for BPN Discoveries for a specific type.     | wants to find an Endpoint for a BPN Discovery to find a BPN |
+| Data Provider    | The data provider adds or deletes his endpoint at the Discovery Finder                                           | wants that his EDC / Digital Twin can be found              |
 | Catena-X network | provides the environment and operates the services | to enable the companies to connect and exchange data        |
-
+| Keycloak      | Keycloak is used for token validation                                                                        |                                                       |
 
 ### NOTICE
 
