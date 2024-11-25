@@ -70,7 +70,7 @@ jobs:
           AUTH_SERVER_TOKEN_URL: ${{ inputs.tokenUrl }}
           DISCOVERYFINDER_API_URL: ${{ inputs.discoveryFinderUrl }}
       - name: Upload test report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: discoveryfinder-e2e-test-report
