@@ -20,7 +20,7 @@
 # Discovery Finder
 The Discovery Finder is a logical and architectural component of Tractus-X. The source code under this folder contains reference implementations of the SLDT Discovery Finder.
 The Discovery Finder is used to find endpoints of BPN Discoveries for a specific type, e.g. "oen". For further
-information have a look to the [documentation](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/docs/1-introduction-and-goals.md).
+information have a look to the [documentation](https://github.com/eclipse-tractusx/sldt-discovery-finder/blob/main/docs/architecture/1-introduction-and-goals.md).
 
 ## Build Packages
 Run `mvn clean install` to run unit tests, build and install the package.
