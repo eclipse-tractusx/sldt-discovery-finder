@@ -91,7 +91,7 @@ maven/mavencentral/org.springframework.boot/spring-boot-actuator-autoconfigure/3
 maven/mavencentral/org.springframework.boot/spring-boot-actuator/3.5.7, Apache-2.0, approved, #23035
 maven/mavencentral/org.springframework.boot/spring-boot-autoconfigure/3.5.7, Apache-2.0, approved, #23034
 maven/mavencentral/org.springframework.boot/spring-boot-starter-actuator/3.5.7, Apache-2.0, approved, #23036
-maven/mavencentral/org.springframework.boot/spring-boot-starter-data-jdbc/3.5.7, , restricted, clearlydefined
+maven/mavencentral/org.springframework.boot/spring-boot-starter-data-jdbc/3.5.7, Apache-2.0, approved, #24678
 maven/mavencentral/org.springframework.boot/spring-boot-starter-data-jpa/3.5.7, Apache-2.0, approved, #22162
 maven/mavencentral/org.springframework.boot/spring-boot-starter-jdbc/3.5.7, Apache-2.0, approved, #22180
 maven/mavencentral/org.springframework.boot/spring-boot-starter-json/3.5.7, Apache-2.0, approved, #23033
@@ -106,9 +106,9 @@ maven/mavencentral/org.springframework.boot/spring-boot-test-autoconfigure/3.5.7
 maven/mavencentral/org.springframework.boot/spring-boot-test/3.5.7, Apache-2.0, approved, #22213
 maven/mavencentral/org.springframework.boot/spring-boot/3.5.7, Apache-2.0, approved, #23032
 maven/mavencentral/org.springframework.data/spring-data-commons/3.5.5, Apache-2.0, approved, #21920
-maven/mavencentral/org.springframework.data/spring-data-jdbc/3.5.5, , restricted, clearlydefined
+maven/mavencentral/org.springframework.data/spring-data-jdbc/3.5.5, Apache-2.0, approved, #24680
 maven/mavencentral/org.springframework.data/spring-data-jpa/3.5.5, Apache-2.0, approved, #21922
-maven/mavencentral/org.springframework.data/spring-data-relational/3.5.5, , restricted, clearlydefined
+maven/mavencentral/org.springframework.data/spring-data-relational/3.5.5, Apache-2.0, approved, #24679
 maven/mavencentral/org.springframework.security/spring-security-config/6.5.6, Apache-2.0, approved, #22177
 maven/mavencentral/org.springframework.security/spring-security-core/6.5.6, Apache-2.0, approved, #23039
 maven/mavencentral/org.springframework.security/spring-security-crypto/6.5.6, Apache-2.0 AND ISC, approved, #22171
