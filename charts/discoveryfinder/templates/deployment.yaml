@@ -1,4 +1,5 @@
 # Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2025 Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e.V. (represented by Fraunhofer ISST)
 # Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -39,6 +40,8 @@ spec:
         - name: properties-discoveryfinder-config
           configMap:
             name: properties-discoveryfinder
+        - name: empty-tmp
+          emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.discoveryfinder.image.registry }}/{{ .Values.discoveryfinder.image.repository }}:{{ .Values.discoveryfinder.image.version | default .Chart.AppVersion }}
@@ -46,6 +49,8 @@ spec:
           volumeMounts:
             - name: properties-discoveryfinder-config
               mountPath: /service/config
+            - name: empty-tmp
+              mountPath: /tmp
           {{- if not .Values.discoveryfinder.authentication }}
           args: [ "--spring.profiles.active=local" ]
           {{- end }}
@@ -80,11 +85,5 @@ spec:
             {{- end }}
           resources:
 {{ .Values.discoveryfinder.resources | toYaml | indent 12 }}
-          volumeMounts:
-            - mountPath: /tmp
-              name: empty-tmp
-      volumes:
-        - name: empty-tmp
-          emptyDir: {}
       imagePullSecrets:
 {{ .Values.discoveryfinder.imagePullSecrets | toYaml | indent 8 }}
