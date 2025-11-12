@@ -1,5 +1,6 @@
 {{- if .Values.discoveryfinder.ingress.enabled }}
 # Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2025 Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e.V. (represented by Fraunhofer ISST)
 # Copyright (c) 2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -28,12 +29,15 @@ metadata:
     {{- include "df.labels" . | nindent 4 }}
 spec:
   ingressClassName: {{ .Values.discoveryfinder.ingress.className }}
-  {{- if .Values.discoveryfinder.ingress.tls }}
+  {{- if .Values.discoveryfinder.ingress.tls.enabled }}
   tls:
     - hosts:
         - {{ .Values.discoveryfinder.host }}
-      secretName: discoveryfinder-certificate-secret
+      secretName: {{ .Values.discoveryfinder.ingress.tls.secretName | default "discoveryfinder-certificate-secret" }}
+  {{- else }}
+  tls: []  # Ensures tls is an empty list when not enabled
   {{- end }}
+  {{- if .Values.discoveryfinder.ingress.urlPrefix }}
   rules:
     - host: {{ .Values.discoveryfinder.host }}
       http:
@@ -45,4 +49,21 @@ spec:
                 name: {{ include "df.fullname" . }}
                 port:
                   number: {{ .Values.discoveryfinder.service.port }}
+  {{- else }}
+  rules:
+    {{- range .Values.discoveryfinder.ingress.rules }}
+    - host: {{ .host | default $.Values.discoveryfinder.host }}
+      http:
+        paths:
+          {{- range .http.paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType | default "ImplementationSpecific" }}
+            backend:
+              service:
+                name: {{ include "df.fullname" $ }}
+                port:
+                  number: {{ $.Values.discoveryfinder.service.port }}
+          {{- end }}
+    {{- end}}
+  {{- end}}
 {{- end }}
