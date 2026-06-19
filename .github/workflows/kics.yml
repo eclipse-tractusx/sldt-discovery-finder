@@ -41,10 +41,10 @@ jobs:
       security-events: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
 
       - name: KICS scan
-        uses: checkmarx/kics-github-action@master
+        uses: checkmarx/kics-github-action@bcd2aff52160bfe5a72608452d00326e90da7a9a # master
         with:
           # Scanning directory .
           path: "."
@@ -66,6 +66,6 @@ jobs:
       # Upload findings to GitHub Advanced Security Dashboard
       - name: Upload SARIF file for GitHub Advanced Security Dashboard
         if: always()
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@dd903d2e4f5405488e5ef1422510ee31c8b32357 # v3.25.10
         with:
           sarif_file: kicsResults/results.sarif

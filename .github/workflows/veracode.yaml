@@ -31,11 +31,11 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
         with:
           ref: release
       - name: setup-java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4.2.2
         with:
           distribution: temurin
           java-version: 17
@@ -45,7 +45,7 @@ jobs:
           export DISCOVERY_FINDER_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
           echo "DISCOVERY_FINDER_VERSION=$DISCOVERY_FINDER_VERSION" >> $GITHUB_ENV
       - name: Run Veracode Upload And Scan
-        uses: veracode/veracode-uploadandscan-action@0.2.1
+        uses: veracode/veracode-uploadandscan-action@ddca86b1d1d45639d1c414003f3495f71851cfe2 # v0.2.11
         with:
           # Specify Veracode application name
           appname: "Discovery Finder"
