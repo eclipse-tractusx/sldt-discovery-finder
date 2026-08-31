@@ -62,8 +62,34 @@ commits fulfills the DCO's requirement that you sign-off on your contributions.
 For more information, please see the Eclipse Committer Handbook:
 https://www.eclipse.org/projects/handbook/#resources-commit
 
+## Keeping dependencies-files up to date
+
+Navigate to the `./backend` folder and run:
+
+```shell
+mvn org.eclipse.dash:license-tool-plugin:license-check
+```
+
+This line runs the maven license tool with the parameters specified in the `./backend/pom.xml` and produces a `DEPENDENCIES` file in the root folder of this project.
+
+Further a [workflow](./.github/workflows/dash-dependency-check.yml) is run when merging main to check if everything is up to date.
+
+As a committer, to request IP checks, use this command
+
+```shell
+mvn org.eclipse.dash:license-tool-plugin:license-check -Ddash.iplab.token=<token>
+```
+
 ## Contact
 
 Contact the project developers via the project's "dev" list.
 
 * https://accounts.eclipse.org/mailing-list/tractusx-dev
+
+## NOTICE
+
+This work is licensed under the [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
+
+- SPDX-License-Identifier: CC-BY-4.0
+- SPDX-FileCopyrightText: 2023 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/sldt-discovery-finder
